@@ -1,0 +1,74 @@
+---
+- type: replace
+  path: /releases/-
+  value:
+    name: bosh-google-cpi
+    version: 25.6.2
+    url: https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-google-cpi-release?v=25.6.2
+    sha1: b4865397d867655fdcc112bc5a7f9a5025cdf311
+
+- type: replace
+  path: /resource_pools/name=vms/stemcell?
+  value:
+    url: https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-trusty-go_agent?v=3363.20
+    sha1: e785b42faffc5b546ed13fc28e523a4e0c622f0a
+
+# Configure sizes
+- type: replace
+  path: /resource_pools/name=vms/cloud_properties?
+  value:
+    zone: ((zone))
+    machine_type: n1-standard-1
+    root_disk_size_gb: 40
+    root_disk_type: pd-standard
+
+- type: replace
+  path: /disk_pools/name=disks/cloud_properties?
+  value: {type: pd-standard}
+
+- type: replace
+  path: /networks/name=default/subnets/0/cloud_properties?
+  value:
+    network_name: ((network))
+    subnetwork_name: ((subnetwork))
+    ephemeral_external_ip: true
+    tags: ((tags))
+
+# Add VIP network
+- type: replace
+  path: /networks/-
+  value:
+    name: vip
+    type: vip
+
+- type: replace
+  path: /instance_groups/name=concourse/networks/name=default/default?
+  value: [dns, gateway]
+
+- type: replace
+  path: /instance_groups/name=concourse/networks/-
+  value:
+    name: vip
+    static_ips: [((public_ip))]
+
+- type: replace
+  path: /instance_groups/name=concourse/networks/name=default/static_ips?
+  value: [((internal_ip))]
+
+# Add CPI job
+- type: replace
+  path: /cloud_provider/template?
+  value:
+    name: google_cpi
+    release: bosh-google-cpi
+
+- type: replace
+  path: /cloud_provider/properties/google?
+  value:
+    project: ((project_id))
+    json_key: ((gcp_credentials_json))
+
+# Use GCP NTP
+- type: replace
+  path: /cloud_provider/properties/ntp
+  value: &ntp [169.254.169.254]

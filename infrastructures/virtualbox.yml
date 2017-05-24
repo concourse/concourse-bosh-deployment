@@ -1,0 +1,54 @@
+---
+- type: replace
+  path: /releases/-
+  value:
+    name: bosh-virtualbox-cpi
+    version: 0.0.11
+    url: https://bosh.io/d/github.com/cppforlife/bosh-virtualbox-cpi-release?v=0.0.11
+    sha1: 0b39e1b43a509adba295275fcc2afee1fb046c5d
+
+- type: replace
+  path: /resource_pools/name=vms/stemcell?
+  value:
+    url: https://bosh.io/d/stemcells/bosh-vsphere-esxi-ubuntu-trusty-go_agent?v=3363.20
+    sha1: cc46c54c4b93dc0933bf9139b60d6782ffcad7ef
+
+# Configure sizes
+- type: replace
+  path: /resource_pools/name=vms/cloud_properties?
+  value:
+    cpus: 2
+    memory: 4096
+    ephemeral_disk: 16_384
+
+- type: replace
+  path: /cloud_provider/template?
+  value:
+    name: virtualbox_cpi
+    release: bosh-virtualbox-cpi
+
+# Configure static ip
+
+- type: replace
+  path: /instance_groups/name=concourse/networks/name=default/static_ips?
+  value: [((public_ip))]
+  static_ips: [&web-ip ((public_ip))]
+
+# # Add outbound network
+- type: replace
+  path: /networks/-
+  value:
+    name: outbound
+    type: dynamic
+    cloud_properties:
+      type: natnetwork
+      name: outbound
+
+- type: replace
+  path: /instance_groups/name=concourse/networks/name=default/default?
+  value: [dns, gateway]
+
+- type: replace
+  path: /instance_groups/name=concourse/networks/-
+  value:
+    name: outbound
