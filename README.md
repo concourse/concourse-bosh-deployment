@@ -36,7 +36,7 @@ bosh create-env concourse-paper-plane.yml \
   --vars-store vbox-creds.yml \
   --state vbox-state.json \
   -v internal_cidr=192.168.50.0/24 \
-  -v internal_cidr=192.168.50.1 \
+  -v internal_gw=192.168.50.1 \
   -v internal_ip=192.168.50.4 \
   -v public_ip=192.168.50.4
 ```
