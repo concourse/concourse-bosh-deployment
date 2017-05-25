@@ -1,7 +1,7 @@
 # Paper Plane
 > A lightweight, single-vm Concourse deployment using `bosh create-env` ([see BOSH cli docs](https://bosh.io/docs/cli-v2.html))
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Paper_Airplane.png/457px-Paper_Airplane.png)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Paper_Airplane.png/200px-Paper_Airplane.png)
 
 This approach is intended as an easy way to get a development Concourse deployment up in the air and ready to `fly`! A number of deployment scenarios ( more coming soon ) are supported by applying [BOSH operations files](https://bosh.io/docs/cli-ops-files.html) to the base `concourse-paper-plane.yml` using `bosh create-env`:
 
