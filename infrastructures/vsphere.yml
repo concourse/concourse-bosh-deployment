@@ -19,7 +19,7 @@
   value:
     cpu: 2
     ram: 4_096
-    disk: 20_000
+    disk: 64_000
 
 # Configure networks
 - type: replace
@@ -37,7 +37,7 @@
     name: vsphere_cpi
     release: bosh-vsphere-cpi
 
-# Configure v-centre details
+# Cloud properties
 - type: replace
   path: /cloud_provider/properties/vcenter?
   value:
