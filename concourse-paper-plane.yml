@@ -49,11 +49,9 @@ instance_groups:
         external_url: https://((public_ip)):4443
         postgresql:
           host: 127.0.0.1
-          port: 5432
           database: atc
           sslmode: disable
           role:
-            name: ((postres_role))
             password: ((postgres_password))
 
         tls_cert: ((atc_ssl.certificate))
