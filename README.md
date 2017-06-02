@@ -1,4 +1,4 @@
-# Paper Plane
+# concourse-deployment
 > A lightweight, single-vm Concourse deployment using `bosh create-env` ([see BOSH cli docs](https://bosh.io/docs/cli-v2.html))
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Paper_Airplane.png/200px-Paper_Airplane.png)
