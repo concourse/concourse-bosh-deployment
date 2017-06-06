@@ -3,21 +3,19 @@
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Paper_Airplane.png/200px-Paper_Airplane.png)
 
-This approach is intended as an easy way to get a development Concourse deployment up in the air and ready to `fly`! A number of deployment scenarios ( more coming soon ) are supported by applying [BOSH operations files](https://bosh.io/docs/cli-ops-files.html) to the base `concourse-paper-plane.yml` using `bosh create-env`:
+This approach is intended as an easy way to get a development Concourse deployment up in the air and ready to `fly`!
+
+This method can be used to create a single-vm Concourse deployment; similar to the `vagrant up` experience, but without the additional effort to build Vagrant boxes of each Concourse release on bosh.io.
+
+ A number of deployment scenarios ( more coming soon ) are supported by applying [BOSH operations files](https://bosh.io/docs/cli-ops-files.html) to the base `concourse.yml` using `bosh create-env`:
 
 - [VirtualBox for Local Development](#local-development)
 - Google Cloud Platform
+- VMware vSphere
 
 ## Requirements
 - [Bosh CLI V2](https://bosh.io/docs/cli-v2.html#install)
 
-
-# Local Development
-
-This method can be used to create a local, single-vm Concourse deployment for development; similar to the `vagrant up` experience, but without the additional effort to build Vagrant boxes of each Concourse release on bosh.io.
-
-## Additional Requirements
-- (VirtualBox 5+)[https://www.virtualbox.org/wiki/Downloads]
 
 ## Usage
 
@@ -28,7 +26,9 @@ git clone https://github.com/concourse/concourse-deployment.git
 cd concourse-deployment
 ```
 
-Create the Concourse VM in VirtualBox
+## Create the Concourse VM in VirtualBox
+**Additional Requirements**
+- (VirtualBox 5+)[https://www.virtualbox.org/wiki/Downloads]
 
 ```shell
 bosh create-env concourse.yml \
@@ -41,6 +41,57 @@ bosh create-env concourse.yml \
   -v public_ip=192.168.50.4
 ```
 
-The web server will be running at `192.168.50.4:8080`. Download the Fly CLI for your system, and target the deployed Concourse.
+## Create the Concourse VM in Google Cloud Platform
 
-`fly -t lite login -c http://192.168.50.4:8080`
+```shell
+#!/bin/bash
+
+gcp_credentials_json=$(cat gcp.json)
+
+bosh create-env concourse.yml \
+  -o infrastructures/gcp.yml \
+  --vars-store gcp-creds.yml \
+  --state gcp-state.json \
+  -v gcp_credentials_json="'$gcp_credentials_json'" \
+  -v internal_cidr= \
+  -v internal_gw= \
+  -v internal_ip= \
+  -v public_ip= \
+  -v network= \
+  -v project_id= \
+  -v subnetwork= \
+  -v tags=\
+  -v zone=
+```
+
+## Create the Concourse VM in VMware vSphere
+
+```shell
+bosh create-env concourse.yml \
+  -o infrastructures/vsphere.yml \
+  --vars-store vsphere-creds-temp.yml \
+  --state vsphere-state-temp.json \
+  -v vcenter_ip= \
+  -v vcenter_user= \
+  -v vcenter_password= \
+  -v vcenter_dc= \
+  -v vcenter_vms= \
+  -v vcenter_templates= \
+  -v vcenter_ds= \
+  -v vcenter_disks= \
+  -v vcenter_cluster= \
+  -v vcenter_resource_pool= \
+  -v network_name= \
+  -v internal_cidr= \
+  -v internal_gw= \
+  -v internal_ip= \
+  -v public_ip=
+ ```
+ 
+ ## Accessing your Councourse
+ 
+ The web server will be running at public-ip you specifid. Download the Fly CLI for your system, and target the deployed Concourse.
+
+`fly -t lite login -c http://public-ip:8080`
+
+
