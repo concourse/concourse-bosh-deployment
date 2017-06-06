@@ -24,14 +24,14 @@ This method can be used to create a local, single-vm Concourse deployment for de
 Clone this repo.
 
 ```shell
-git clone git@github.com:concourse/paper-plane.git
-cd paper-plane
+git clone https://github.com/concourse/concourse-deployment.git
+cd concourse-deployment
 ```
 
 Create the Concourse VM in VirtualBox
 
 ```shell
-bosh create-env concourse-paper-plane.yml \
+bosh create-env concourse.yml \
   -o ./infrastructures/virtualbox.yml \
   --vars-store vbox-creds.yml \
   --state vbox-state.json \
