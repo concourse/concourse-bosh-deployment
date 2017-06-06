@@ -9,7 +9,7 @@ This method can be used to create a single-vm Concourse deployment; similar to t
 
  A number of deployment scenarios ( more coming soon ) are supported by applying [BOSH operations files](https://bosh.io/docs/cli-ops-files.html) to the base `concourse.yml` using `bosh create-env`:
 
-- [VirtualBox for Local Development](#local-development)
+- VirtualBox
 - Google Cloud Platform
 - VMware vSphere
 
