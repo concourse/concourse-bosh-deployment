@@ -19,7 +19,7 @@
   value:
     cpus: 2
     memory: 4096
-    ephemeral_disk: 16_384
+    ephemeral_disk: 32_768
 
 - type: replace
   path: /cloud_provider/template?
