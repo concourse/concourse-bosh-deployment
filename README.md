@@ -100,14 +100,14 @@ bosh create-env concourse.yml \
    -v secret_access_key=... \
    -v region=us-east-1 \
    -v az=us-east-1b \
-   -v default_key_name=bosh \
-   -v default_security_groups=[bosh] \
+   -v default_key_name=concourse \
+   -v default_security_groups=[concourse] \
    -v subnet_id=subnet-... \
-   -v director_name=bosh-1 \
+   -v concourse_name=concourse-1 \
    -v internal_cidr=192.168.50.0/24 \
    -v internal_gw=192.168.50.1 \
    -v internal_ip=192.168.50.4 \
-   -v public_ip=192.168.50.4
+   -v public_ip=192.168.50.4 \
    --var-file private_key=~/Downloads/bosh.pem
  ```
 
