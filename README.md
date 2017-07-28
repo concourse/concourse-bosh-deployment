@@ -111,23 +111,6 @@ bosh create-env concourse.yml \
    --var-file private_key=~/Downloads/bosh.pem
  ```
 
- bosh create-env ~/workspace/bosh-deployment/bosh.yml \
-  --state ./state.json \
-  -o ~/workspace/bosh-deployment/aws/cpi.yml \
-  --vars-store ./creds.yml \
-  -v access_key_id=... \
-  -v secret_access_key=... \
-  -v region=us-east-1 \
-  -v az=us-east-1b \
-  -v default_key_name=bosh \
-  -v default_security_groups=[bosh] \
-  -v subnet_id=subnet-... \
-  -v director_name=concourse-1 \
-  -v internal_cidr=10.0.0.0/24 \
-  -v internal_gw=10.0.0.1 \
-  -v internal_ip=10.0.0.6 \
-  --var-file private_key=~/Downloads/bosh.pem
-
  ## Accessing your Concourse
 
  The web server will be running at public-ip you specifid. Download the Fly CLI for your system, and target the deployed Concourse.
