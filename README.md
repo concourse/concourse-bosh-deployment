@@ -94,8 +94,8 @@ bosh create-env concourse.yml \
  ```shell
  bosh create-env concourse.yml \
    -o ./infrastructures/aws.yml \
-   --vars-store aws-creds.yml \
-   --state aws-state.json \
+   --vars-store aws-concourse-creds.yml \
+   --state aws-concourse-state.json \
    -v access_key_id=... \
    -v secret_access_key=... \
    -v region=us-east-1 \
@@ -107,7 +107,7 @@ bosh create-env concourse.yml \
    -v internal_cidr=192.168.50.0/24 \
    -v internal_gw=192.168.50.1 \
    -v internal_ip=192.168.50.4 \
-   -v public_ip=52.26.32.175 \
+   -v public_ip=192.168.50.4 \
    --var-file private_key=~/Downloads/bosh.pem
  ```
 
