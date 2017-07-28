@@ -33,9 +33,9 @@
   path: /networks/name=default/subnets/0/cloud_properties?
   value: {subnet: ((subnet_id))}
 
-- type: replace
-  path: /instance_groups/name=concourse/networks/name=default/static_ips?
-  value: [((internal_ip))]
+# - type: replace
+#   path: /instance_groups/name=concourse/networks/name=default/static_ips?
+#   value: [((internal_ip))]
 
 # Add CPI job
 - type: replace
