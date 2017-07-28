@@ -12,6 +12,7 @@ This method can be used to create a single-vm Concourse deployment; similar to t
 - VirtualBox
 - Google Cloud Platform
 - VMware vSphere
+- Amazon Web Services (AWS)
 
 ## Requirements
 - [Bosh CLI V2](https://bosh.io/docs/cli-v2.html#install)
@@ -87,11 +88,48 @@ bosh create-env concourse.yml \
   -v internal_ip= \
   -v public_ip=
  ```
- 
- ## Accessing your Councourse
- 
+
+ ## Create the Concourse VM in AWS
+
+ ```shell
+ bosh create-env concourse.yml \
+   -o ./infrastructures/aws.yml \
+   --vars-store aws-creds.yml \
+   --state aws-state.json \
+   -v access_key_id=... \
+   -v secret_access_key=... \
+   -v region=us-east-1 \
+   -v az=us-east-1b \
+   -v default_key_name=bosh \
+   -v default_security_groups=[bosh] \
+   -v subnet_id=subnet-... \
+   -v director_name=bosh-1 \
+   -v internal_cidr=192.168.50.0/24 \
+   -v internal_gw=192.168.50.1 \
+   -v internal_ip=192.168.50.4 \
+   -v public_ip=192.168.50.4
+   --var-file private_key=~/Downloads/bosh.pem
+ ```
+
+ bosh create-env ~/workspace/bosh-deployment/bosh.yml \
+  --state ./state.json \
+  -o ~/workspace/bosh-deployment/aws/cpi.yml \
+  --vars-store ./creds.yml \
+  -v access_key_id=... \
+  -v secret_access_key=... \
+  -v region=us-east-1 \
+  -v az=us-east-1b \
+  -v default_key_name=bosh \
+  -v default_security_groups=[bosh] \
+  -v subnet_id=subnet-... \
+  -v director_name=concourse-1 \
+  -v internal_cidr=10.0.0.0/24 \
+  -v internal_gw=10.0.0.1 \
+  -v internal_ip=10.0.0.6 \
+  --var-file private_key=~/Downloads/bosh.pem
+
+ ## Accessing your Concourse
+
  The web server will be running at public-ip you specifid. Download the Fly CLI for your system, and target the deployed Concourse.
 
 `fly -t lite login -c http://public-ip:8080`
-
-
