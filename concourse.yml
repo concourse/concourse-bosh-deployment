@@ -9,7 +9,7 @@ releases:
 - name: garden-runc
   version: ((garden_runc_version))
   sha1: ((garden_runc_sha1))
-  url: https://github.com/concourse/concourse/releases/download/v((garden_runc_version))/garden-runc-((garden_runc_version)).tgz
+  url: https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=((garden_runc_version))
 
 resource_pools:
 - name: vms
