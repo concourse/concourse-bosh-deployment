@@ -28,7 +28,7 @@ cd concourse-deployment
 
 ## Create the Concourse VM in VirtualBox
 **Additional Requirements**
-- (VirtualBox 5+)[https://www.virtualbox.org/wiki/Downloads]
+- [VirtualBox 5+](https://www.virtualbox.org/wiki/Downloads)
 
 ```shell
 bosh create-env concourse.yml \
