@@ -5,7 +5,7 @@ releases:
 - name: concourse
   version: ((concourse_version))
   sha1: ((concourse_sha1))
-  url: https://github.com/concourse/concourse/releases/download/v((concourse_version))/concourse-((concourse_version)).tgz
+  url: https://github.com/concourse/concourse/releases/download/v((concourse_version))/concourse-((concourse_version))-((stemcell_version)).tgz
 - name: garden-runc
   version: ((garden_runc_version))
   sha1: ((garden_runc_sha1))
