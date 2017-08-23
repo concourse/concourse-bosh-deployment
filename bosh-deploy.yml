@@ -1,0 +1,55 @@
+---
+- type: remove
+  path: /cloud_provider
+
+- type: remove
+  path: /instance_groups/name=concourse/resource_pool
+
+- type: replace
+  path: /instance_groups/name=concourse/vm_type?
+  value: large
+
+- type: remove
+  path: /instance_groups/name=concourse/persistent_disk_pool
+
+- type: replace
+  path: /instance_groups/name=concourse/disk_type?
+  value: default
+
+- type: replace
+  path: /instance_groups/name=concourse/azs?
+  value: [z1]
+
+- type: remove
+  path: /resource_pools
+
+- type: remove
+  path: /disk_pools
+
+- type: remove
+  path: /networks
+
+- type: remove
+  path: /variables/name=mbus_bootstrap_password
+
+- type: remove
+  path: /variables/name=postgres_password
+
+- type: replace
+  path: /update?
+  value:
+    canaries: 0
+    max_in_flight: 1
+    canary_watch_time: 30000-180000
+    update_watch_time: 30000-180000
+
+- type: replace
+  path: /stemcells?/-
+  value:
+    alias: default
+    os: ubuntu-trusty
+    version: "((stemcell_version))"
+
+- type: replace
+  path: /instance_groups/name=concourse/stemcell?
+  value: default
