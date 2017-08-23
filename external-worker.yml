@@ -1,0 +1,51 @@
+---
+- type: replace
+  path: /name
+  value: concourse-worker
+
+- type: remove
+  path: /instance_groups/name=concourse/jobs/name=atc
+
+- type: remove
+  path: /instance_groups/name=concourse/jobs/name=tsa
+
+- type: remove
+  path: /instance_groups/name=concourse/jobs/name=postgresql
+
+- type: replace
+  path: /instance_groups/name=concourse/instances
+  value: ((num_workers))
+
+- type: remove
+  path: /instance_groups/name=concourse/disk_type
+
+- type: replace
+  path: /instance_groups/name=concourse/jobs/name=groundcrew/properties/tsa?/host?
+  value: ((tsa_host))
+
+- type: replace
+  path: /instance_groups/name=concourse/jobs/name=groundcrew/properties/tsa?/host_public_key?
+  value: ((tsa_public_key))
+
+- type: replace
+  path: /instance_groups/name=concourse/jobs/name=groundcrew/properties/tsa?/private_key?
+  value: ((worker_private_key))
+
+- type: replace
+  path: /instance_groups/name=concourse/jobs/name=groundcrew/properties/garden?/forward_address?
+  value: 127.0.0.1:7777
+
+- type: replace
+  path: /instance_groups/name=concourse/jobs/name=groundcrew/properties/garden?/listen_network?
+  value: tcp
+
+- type: replace
+  path: /instance_groups/name=concourse/jobs/name=groundcrew/properties/garden?/listen_address?
+  value: 0.0.0.0:7777
+
+- type: replace
+  path: /instance_groups/name=concourse/jobs/name=groundcrew/properties/baggageclaim?/forward_address?
+  value: 127.0.0.1:7788
+
+- type: remove
+  path: /instance_groups/name=concourse/jobs/name=groundcrew/properties/baggageclaim/url
