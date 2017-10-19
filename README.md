@@ -88,7 +88,7 @@ bosh create-env concourse.yml \
   -v public_ip=
  ```
  
- ## Accessing your Councourse
+ ## Accessing your Concourse
  
  The web server will be running at the public-ip you specified. Download the Fly CLI for your system, and target the deployed Concourse.
 
