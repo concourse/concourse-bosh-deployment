@@ -7,7 +7,7 @@ This approach is intended as an easy way to get a development Concourse deployme
 
 This method can be used to create a single-vm Concourse deployment; similar to the `vagrant up` experience, but without the additional effort to build Vagrant boxes of each Concourse release on bosh.io.
 
- A number of deployment scenarios ( more coming soon ) are supported by applying [BOSH operations files](https://bosh.io/docs/cli-ops-files.html) to the base `concourse.yml` using `bosh create-env`:
+ A number of deployment scenarios ( _more coming soon_ ) are supported by applying [BOSH operations files](https://bosh.io/docs/cli-ops-files.html) to the base `concourse.yml` using `bosh create-env`:
 
 - VirtualBox
 - Google Cloud Platform
@@ -29,7 +29,7 @@ cd concourse-deployment
 
 ## Create the Concourse VM in VirtualBox
 **Additional Requirements**
-- (VirtualBox 5+)[https://www.virtualbox.org/wiki/Downloads]
+- [VirtualBox 5+](https://www.virtualbox.org/wiki/Downloads)
 
 ```shell
 bosh create-env concourse.yml \
@@ -88,6 +88,11 @@ bosh create-env concourse.yml \
   -v internal_ip= \
   -v public_ip=
  ```
+ 
+ ## Accessing your Concourse
+ 
+ The web server will be running at the public-ip you specified. Download the Fly CLI for your system, and target the deployed Concourse.
+
 
  ## Create the Concourse VM in AWS
 

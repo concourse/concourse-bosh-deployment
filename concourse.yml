@@ -2,14 +2,14 @@
 name: concourse-paper-plane
 
 releases:
-  - name: concourse
-    version: 3.0.1
-    sha1: ade4f7b6a939d3a47590006410aa89f69b4dbd1f
-    url: https://bosh.io/d/github.com/concourse/concourse?v=3.0.1
-  - name: garden-runc
-    version: 1.6.0
-    sha1: 58fbc64aff303e6d76899441241dd5dacef50cb7
-    url: https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=1.6.0
+- name: concourse
+  version: ((concourse_version))
+  sha1: ((concourse_sha1))
+  url: https://github.com/concourse/concourse/releases/download/v((concourse_version))/concourse-((concourse_version))-((stemcell_version)).tgz
+- name: garden-runc
+  version: ((garden_runc_version))
+  sha1: ((garden_runc_sha1))
+  url: https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=((garden_runc_version))
 
 resource_pools:
 - name: vms
@@ -37,62 +37,58 @@ instance_groups:
   resource_pool: vms
   persistent_disk_pool: disks
   networks:
-    - name: default
-      default: [gateway,dns]
+  - name: default
+    default: [gateway,dns]
   jobs:
-
-    - release: concourse
-      name: atc
-      properties:
-        tls_bind_port: 4443
-        log_level: debug
-        external_url: https://((public_ip)):4443
-        postgresql:
-          host: 127.0.0.1
-          database: atc
-          sslmode: disable
-          role:
-            password: ((postgres_password))
-
-        tls_cert: ((atc_ssl.certificate))
-        tls_key: ((atc_ssl.private_key))
-        no_really_i_dont_want_any_auth: true
-
-    - release: concourse
-      name: tsa
-      properties:
-        log_level: debug
-
-    - release: concourse
-      name: postgresql
-      properties:
-        databases:
-        - name: atc
-          role: atc
+  - release: concourse
+    name: atc
+    properties:
+      log_level: debug
+      external_url: http://((public_ip)):8080
+      postgresql:
+        host: 127.0.0.1
+        database: atc
+        sslmode: disable
+        role:
           password: ((postgres_password))
 
-    - release: concourse
-      name: groundcrew
-      properties:
-        drain_timeout: 10m
-        baggageclaim:
-          url: http://127.0.0.1:7788
-        tsa:
-          host: 127.0.0.1
-          port: 2222
+      no_really_i_dont_want_any_auth: true
 
-    - release: concourse
-      name: baggageclaim
-      properties:
-        log_level: debug
+  - release: concourse
+    name: tsa
+    properties:
+      log_level: debug
 
-    - release: garden-runc
-      name: garden
-      properties:
-        garden:
-          listen_network: tcp
-          listen_address: 0.0.0.0:7777
-          allow_host_access: true
+  - release: concourse
+    name: postgresql
+    properties:
+      databases:
+      - name: atc
+        role: atc
+        password: ((postgres_password))
+
+  - release: concourse
+    name: groundcrew
+    properties:
+      drain_timeout: 10m
+      baggageclaim:
+        url: http://127.0.0.1:7788
+      tsa:
+        host: 127.0.0.1
+        port: 2222
+
+  - release: concourse
+    name: baggageclaim
+    properties:
+      log_level: debug
+
+  - release: garden-runc
+    name: garden
+    properties:
+      garden:
+        listen_network: tcp
+        listen_address: 0.0.0.0:7777
+        allow_host_access: true
 
 cloud_provider:
   mbus: https://mbus:((mbus_bootstrap_password))@((public_ip)):6868
@@ -110,20 +106,3 @@ variables:
   type: password
 - name: postgres_password
   type: password
-- name: user_creds
-  type: rsa
-- name: tsa
-  type: rsa
-- name: external_worker
-  type: rsa
-- name: default_ca
-  type: certificate
-  options:
-    is_ca: true
-    common_name: ca # todo fix
-- name: atc_ssl
-  type: certificate
-  options:
-    ca: default_ca
-    common_name: ((public_ip))
-    alternative_names: [((public_ip))]
