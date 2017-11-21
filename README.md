@@ -12,6 +12,7 @@ This method can be used to create a single-vm Concourse deployment; similar to t
 - VirtualBox
 - Google Cloud Platform
 - VMware vSphere
+- Open Stack
 - Amazon Web Services (AWS)
 
 ## Requirements
@@ -88,7 +89,39 @@ bosh create-env concourse.yml \
   -v internal_ip= \
   -v public_ip=
  ```
- 
+
+ ## Create the Concourse VM in Open Stack
+
+ ```shell
+ #!/bin/bash
+
+ bosh create-env concourse.yml \
+   -o infrastructures/openstack.yml \
+   --vars-store openstack-creds.yml \
+   --state openstack-state.json \
+   -v concourse_version= \
+   -v concourse_sha1= \
+   -v garden_runc_version= \
+   -v garden_runc_sha1= \
+   -v network_name= \
+   -v internal_cidr= \
+   -v internal_gw= \
+   -v internal_ip= \
+   -v public_ip= \
+   -v auth_url= \
+   -v az= \
+   -v default_key_name= \
+   -v default_security_groups= \
+   -v net_id= \
+   -v openstack_domain= \
+   -v openstack_password= \
+   -v openstack_project= \
+   -v openstack_username= \
+   -v private_key= \
+   -v region=
+ ```
+
+
  ## Accessing your Concourse
  
  The web server will be running at the public-ip you specified. Download the Fly CLI for your system, and target the deployed Concourse.
