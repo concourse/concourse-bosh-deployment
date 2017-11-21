@@ -28,15 +28,14 @@ Then, choose your adventure below.
 
 ## Deployment scenarios
 
-### `single-vm/`: Single-VM directorless deployment
+### `lite/`: "Lite" directorless deployment
 
-These manifests deploy Concourse, *without a BOSH director*, to a single VM on
-the supported IaaSes.
+These manifests deploy Concourse, *without a BOSH director*, onto a single VM.
 
 This approach is intended as an easy way to get a development Concourse
 deployment up in the air and ready to `fly`!
 
-Consult the [`single-vm` README](single-vm/README.md) for more information.
+Consult the [`lite` README](lite/README.md) for more information.
 
 ### `cluster/`: A full-blown BOSH deployment to a director
 

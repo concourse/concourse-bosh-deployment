@@ -1,6 +1,6 @@
-# Single-VM Concourse deployment
+# Lite-VM Concourse deployment
 
-A single-VM Concourse deployment will co-locate everything together, without a
+A "lite" Concourse deployment will co-locate everything together, without a
 BOSH director. The only real advantage of this is that it's a single VM, making
 it easy to get your feet wet, but it won't help you scale later when you need
 it.
@@ -46,13 +46,13 @@ infrastructure](infrastructures/gcp.yml) needs:
 
 ```shell
 $ bosh create-env concourse.yml -l ../versions.yml -o infrastructures/gcp.yml
-Deployment manifest: '/Users/pivotal/workspace/concourse-deployment/single-vm/concourse.yml'
-Deployment state: '/Users/pivotal/workspace/concourse-deployment/single-vm/concourse-state.json'
+Deployment manifest: '/Users/pivotal/workspace/concourse-deployment/lite/concourse.yml'
+Deployment state: '/Users/pivotal/workspace/concourse-deployment/lite/concourse-state.json'
 
 Started validating
 Failed validating (00:00:00)
 
-Parsing release set manifest '/Users/pivotal/workspace/concourse-deployment/single-vm/concourse.yml':
+Parsing release set manifest '/Users/pivotal/workspace/concourse-deployment/lite/concourse.yml':
   Evaluating manifest:
     - Expected to find variables:
         - gcp_credentials_json
