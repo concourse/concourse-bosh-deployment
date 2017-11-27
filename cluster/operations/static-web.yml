@@ -1,0 +1,3 @@
+- type: replace
+  path: /instance_groups/name=web/networks/name=((network_name))/static_ips?
+  value: [((web_ip))]

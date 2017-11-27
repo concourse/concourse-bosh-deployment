@@ -1,0 +1,7 @@
+- type: replace
+  path: /releases/name=concourse/version
+  value: latest
+- type: remove
+  path: /releases/name=concourse/sha1
+- type: remove
+  path: /releases/name=concourse/url

@@ -1,0 +1,28 @@
+---
+azs:
+- name: z1
+
+networks:
+- name: concourse
+  subnets:
+  - az: z1
+    gateway: 10.244.15.1
+    range: 10.244.15.0/30
+    static:
+    - 10.244.15.2
+  - az: z1
+    gateway: 10.244.16.1
+    range: 10.244.16.0/24
+
+vm_types:
+- name: concourse
+  network: concourse
+
+disk_types:
+- name: db
+  disk_size: 10240
+
+compilation:
+  az: z1
+  workers: 3
+  network: concourse
