@@ -47,8 +47,10 @@ instance_groups:
   - release: concourse
     name: atc
     properties:
-      log_level: debug
+      token_signing_key: ((token_signing_key))
+
       external_url: http://((public_ip)):8080
+
       postgresql:
         host: 127.0.0.1
         database: atc
@@ -62,7 +64,9 @@ instance_groups:
   - release: concourse
     name: tsa
     properties:
-      log_level: debug
+      host_key: ((tsa_host_key))
+      token_signing_key: ((token_signing_key))
+      authorized_keys: [((worker_key.public_key))]
 
   - release: postgres
     name: postgres
@@ -84,6 +88,7 @@ instance_groups:
       tsa:
         host: 127.0.0.1
         port: 2222
+        worker_key: ((worker_key))
 
   - release: concourse
     name: baggageclaim
@@ -114,3 +119,9 @@ variables:
   type: password
 - name: postgres_password
   type: password
+- name: token_signing_key
+  type: rsa
+- name: tsa_host_key
+  type: ssh
+- name: worker_key
+  type: ssh
