@@ -10,6 +10,10 @@ releases:
   version: ((garden_runc_version))
   sha1: ((garden_runc_sha1))
   url: https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=((garden_runc_version))
+- name: postgres
+  version: ((postgres_version))
+  sha1: ((postgres_sha1))
+  url: https://bosh.io/d/github.com/cloudfoundry/postgres-release?v=((postgres_version))
 
 resource_pools:
 - name: vms
@@ -50,6 +54,7 @@ instance_groups:
         database: atc
         sslmode: disable
         role:
+          name: atc
           password: ((postgres_password))
 
       no_really_i_dont_want_any_auth: true
@@ -59,13 +64,16 @@ instance_groups:
     properties:
       log_level: debug
 
-  - release: concourse
-    name: postgresql
+  - release: postgres
+    name: postgres
     properties:
       databases:
-      - name: atc
-        role: atc
-        password: ((postgres_password))
+        port: 5432
+        databases:
+        - name: atc
+        roles:
+        - name: atc
+          password: ((postgres_password))
 
   - release: concourse
     name: groundcrew
