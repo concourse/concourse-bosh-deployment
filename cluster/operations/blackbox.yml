@@ -1,5 +1,5 @@
 - type: replace
-  path: /instance_groups/name=web/jobs/0:before
+  path: /instance_groups/name=web/jobs/-
   value: &blackbox_job
     name: blackbox
     release: concourse
@@ -11,9 +11,9 @@
             address: ((blackbox_address))
 
 - type: replace
-  path: /instance_groups/name=db/jobs/0:before
+  path: /instance_groups/name=db/jobs/-
   value: *blackbox_job
 
 - type: replace
-  path: /instance_groups/name=worker/jobs/0:before
+  path: /instance_groups/name=worker/jobs/-
   value: *blackbox_job
