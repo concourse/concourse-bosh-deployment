@@ -1,0 +1,6 @@
+- type: replace
+  path: /instance_groups/name=web/networks/0/name
+  value: ((web_network_name))
+- type: replace
+  path: /instance_groups/name=web/vm_extensions?/-
+  value: ((web_network_vm_extension))

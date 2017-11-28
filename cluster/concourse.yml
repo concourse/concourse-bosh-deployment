@@ -1,5 +1,5 @@
 ---
-name: concourse
+name: ((deployment_name))
 
 releases:
 - name: concourse
@@ -26,14 +26,16 @@ instance_groups:
   - release: concourse
     name: atc
     properties:
+      log_level: debug
+
       token_signing_key: ((token_signing_key))
 
       external_url: ((external_url))
 
       postgresql:
-        database: atc
-        role:
-          name: atc
+        database: &db_name atc
+        role: &db_role
+          name: concourse
           password: ((postgres_password))
 
   - release: concourse
@@ -58,10 +60,9 @@ instance_groups:
       databases:
         port: 5432
         databases:
-        - name: atc
+        - name: *db_name
         roles:
-        - name: atc
-          password: ((postgres_password))
+        - *db_role
 
 - name: worker
   instances: 1
@@ -72,13 +73,15 @@ instance_groups:
   jobs:
   - release: concourse
     name: groundcrew
+    consumes: {baggageclaim: {from: worker-baggageclaim}}
     properties:
       drain_timeout: 10m
       tsa: {worker_key: ((worker_key))}
 
   - release: concourse
     name: baggageclaim
-    properties: {}
+    properties: {log_level: debug}
+    provides: {baggageclaim: {as: worker-baggageclaim}}
 
   - release: garden-runc
     name: garden

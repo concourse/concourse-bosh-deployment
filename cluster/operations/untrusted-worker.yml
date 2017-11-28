@@ -1,0 +1,32 @@
+- type: replace
+  path: /instance_groups/-
+  value:
+    name: untrusted-worker
+    instances: 1
+    vm_type: ((untrusted_worker_vm_type))
+    stemcell: trusty
+    networks: [{name: ((untrusted_worker_network_name))}]
+    azs: [z1]
+    jobs:
+    - release: concourse
+      name: groundcrew
+      consumes: {baggageclaim: {from: untrusted-baggageclaim}}
+      properties:
+        tags: ((untrusted_worker_tags))
+        garden: {forward_address: "127.0.0.1:7777"}
+        baggageclaim: {forward_address: "127.0.0.1:7788"}
+        tsa: {worker_key: ((worker_key))}
+    - release: concourse
+      name: baggageclaim
+      provides: {baggageclaim: {as: untrusted-baggageclaim}}
+      properties:
+        log_level: debug
+        bind_ip: 127.0.0.1
+    - release: garden-runc
+      name: garden
+      properties:
+        garden:
+          listen_network: tcp
+          listen_address: 127.0.0.1:7777
+          deny_networks: ((untrusted_worker_deny_networks))
+          dns_servers: [8.8.8.8, 8.8.4.4]

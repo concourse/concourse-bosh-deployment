@@ -1,0 +1,23 @@
+- type: replace
+  path: /releases/name=concourse/version
+  value: latest
+- type: remove
+  path: /releases/name=concourse/sha1
+- type: remove
+  path: /releases/name=concourse/url
+
+- type: replace
+  path: /releases/name=garden-runc/version
+  value: latest
+- type: remove
+  path: /releases/name=garden-runc/sha1
+- type: remove
+  path: /releases/name=garden-runc/url
+
+- type: replace
+  path: /releases/name=postgres/version
+  value: latest
+- type: remove
+  path: /releases/name=postgres/sha1
+- type: remove
+  path: /releases/name=postgres/url

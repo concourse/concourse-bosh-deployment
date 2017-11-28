@@ -1,0 +1,39 @@
+- type: replace
+  path: /releases/name=telegraf-agent?
+  value:
+    name: telegraf-agent
+    version: latest
+
+- type: replace
+  path: /instance_groups/name=db/jobs/-
+  value:
+    name: telegraf-agent
+    release: telegraf-agent
+    properties:
+      influxdb:
+        url: ((influxdb_url))
+        database: ((influxdb_database))
+        username: ((influxdb_auth.username))
+        password: ((influxdb_auth.password))
+      inputs:
+        postgresql:
+          address: 'postgres://concourse:((postgres_password))@127.0.0.1/atc?sslmode=disable'
+        # postgresql_extensible:
+        #   address: 'postgres://concourse:((postgres_password))@127.0.0.1/atc?sslmode=disable'
+        #   outputaddress: prod
+        #   queries:
+        #   - measurement: "postgresql slow queries"
+        #     query: |
+        #       SELECT
+        #         total_time / calls AS avg_time,
+        #         calls,
+        #         total_time,
+        #         rows,
+        #         100.0 * shared_blks_hit / nullif(shared_blks_hit + shared_blks_read, 0) AS hit_percent,
+        #         regexp_replace(query, '[\s\t\n]+', ' ', 'g') AS query
+        #       FROM pg_stat_statements
+        #       WHERE query NOT LIKE '%EXPLAIN%'
+        #       ORDER BY avg_time DESC LIMIT 50
+        #     version: 901
+        #     tags: ["query"]
+

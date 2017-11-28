@@ -1,0 +1,7 @@
+- type: replace
+  path: /instance_groups/name=web/instances
+  value: ((web_instances))
+
+- type: replace
+  path: /instance_groups/name=worker/instances
+  value: ((worker_instances))

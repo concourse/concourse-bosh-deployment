@@ -1,0 +1,10 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/vault?
+  value:
+    url: ((vault_url))
+    tls:
+      ca_cert:
+        certificate: ((vault_cert.ca))
+      client_cert: ((vault_cert))
+    auth:
+      backend: cert

@@ -1,0 +1,30 @@
+- type: replace
+  path: /releases/-
+  value:
+    name: concourse-windows-worker
+    version: latest
+
+- type: replace
+  path: /stemcells/-
+  value:
+    alias: windows
+    os: windows2012R2
+    version: latest
+
+- type: replace
+  path: /instance_groups/-
+  value:
+    name: windows-worker
+    instances: 1
+    vm_type: worker
+    stemcell: windows
+    networks: [{name: private}]
+    azs: [z1]
+    jobs:
+    - name: concourse_windows
+      release: concourse-windows-worker
+      properties:
+        concourse_windows:
+          tsa_host: ((windows_worker_tsa_host))
+          tsa_public_key: ((tsa_host_key.public_key))
+          tsa_worker_private_key: ((worker_key.private_key))
