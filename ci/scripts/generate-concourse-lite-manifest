@@ -4,7 +4,7 @@
 set -e -x
 
 bosh interpolate concourse-deployment/lite/concourse.yml \
-  -o concourse-deployment/infrastructures/virtualbox.yml \
+  -o concourse-deployment/lite/infrastructures/virtualbox.yml \
   --vars-store concourse-deployment/vbox-creds.yml \
   -v internal_cidr=192.168.100.0/24 \
   -v internal_gw=192.168.100.1 \
