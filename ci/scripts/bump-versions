@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e -u
+
+git config --global user.email "ci@localhost"
+git config --global user.name "CI Bot"
+
+git clone ./concourse-deployment ./bumped-repo
+
+cat ./concourse-deployment/versions.yml | \
+  sed -e "s/concourse_version: .*/concourse_version: '$(cat concourse-boshio/version)'/" | \
+  sed -e "s/concourse_sha1: .*/concourse_sha1: '$(cat concourse-boshio/sha1)'/" | \
+  sed -e "s/garden_runc_version: .*/garden_runc_version: '$(cat garden-runc/version)'/" | \
+  sed -e "s/garden_runc_sha1: .*/garden_runc_sha1: '$(cat garden-runc/sha1)'/" | \
+  sed -e "s/postgres_version: .*/postgres_version: '$(cat postgres-release/version)'/" | \
+  sed -e "s/postgres_sha1: .*/postgres_sha1: '$(cat postgres-release/sha1)'/" \
+  > bumped-repo/versions.yml
+
+cd bumped-repo
+
+git add -A
+git commit -m "bump versions.yml"
