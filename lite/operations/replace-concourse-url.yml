@@ -1,0 +1,4 @@
+---
+- type: replace
+  path: /releases/name=concourse/url
+  value: ((concourse_url))

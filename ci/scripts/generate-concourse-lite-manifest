@@ -3,20 +3,33 @@
 
 set -e -x
 
+concourse_version=$(cat version/version)
+concourse_sha1=$(shasum exported-release/concourse-*.tgz | awk '{print $1}')
+garden_runc_version=$(cat garden-runc/version)
+garden_runc_sha1=$(cat garden-runc/sha1)
+postgres_version=$(cat postgres-release/version)
+postgres_sha1=$(cat postgres-release/sha1)
+cpi_version=$(cat bosh-virtualbox-cpi/version)
+cpi_sha1=$(cat bosh-virtualbox-cpi/sha1)
+stemcell_version=$(cat vsphere-stemcell/version)
+stemcell_sha1=$(cat vsphere-stemcell/sha1)
+
 bosh interpolate concourse-deployment/lite/concourse.yml \
   -o concourse-deployment/lite/infrastructures/virtualbox.yml \
+  -o concourse-deployment/lite/operations/replace-concourse-url.yml \
   --vars-store concourse-deployment/vbox-creds.yml \
   -v internal_cidr=192.168.100.0/24 \
   -v internal_gw=192.168.100.1 \
   -v internal_ip=192.168.100.4 \
   -v public_ip=192.168.100.4 \
-  -v concourse_version="'$(cat version/version)'" \
-  -v concourse_sha1=$(shasum exported-release/concourse-*.tgz | awk '{print $1}') \
-  -v garden_runc_version="'$(cat garden-runc/version)'" \
-  -v garden_runc_sha1=$(shasum garden-runc/*.tgz | awk '{print $1}') \
-  -v postgres_version="'$(cat postgres-release/version)'" \
-  -v postgres_sha1=$(cat postgres-release/sha1) \
-  -v virtualbox_cpi_version="'$(cat bosh-virtualbox-cpi/version)'" \
-  -v virtualbox_cpi_sha1=$(cat bosh-virtualbox-cpi/sha1) \
-  -v virtualbox_stemcell_version="'$(cat vsphere-stemcell/version)'" \
-  -v virtualbox_stemcell_sha1=$(cat vsphere-stemcell/sha1) > concourse-lite-manifest/concourse-lite.yml
+  -v concourse_version="'$concourse_version'" \
+  -v concourse_sha1=$concourse_sha1 \
+  -v concourse_url="https://github.com/concourse/concourse/releases/download/v${concourse_version}/concourse-${concourse_version}-${stemcell_version}.tgz" \
+  -v garden_runc_version="'$garden_runc_version'" \
+  -v garden_runc_sha1=$garden_runc_sha1 \
+  -v postgres_version="'$postgres_version'" \
+  -v postgres_sha1=$postgres_sha1 \
+  -v virtualbox_cpi_version="'$cpi_version'" \
+  -v virtualbox_cpi_sha1=$cpi_sha1 \
+  -v virtualbox_stemcell_version="'$stemcell_version'" \
+  -v virtualbox_stemcell_sha1=$stemcell_sha1 > concourse-lite-manifest/concourse-lite.yml
