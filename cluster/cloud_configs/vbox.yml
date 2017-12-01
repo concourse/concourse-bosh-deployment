@@ -6,13 +6,13 @@ networks:
 - name: concourse
   subnets:
   - az: z1
-    gateway: 10.244.15.1
-    range: 10.244.15.0/30
-    static:
-    - 10.244.15.2
-  - az: z1
     gateway: 10.244.16.1
-    range: 10.244.16.0/24
+    range: 10.244.16.0/30
+    static:
+    - 10.244.16.2
+  - az: z1
+    gateway: 10.244.17.1
+    range: 10.244.17.0/24
 
 vm_types:
 - name: concourse
