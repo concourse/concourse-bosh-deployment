@@ -42,7 +42,7 @@ instance_groups:
     name: tsa
     properties:
       log_level: debug
-      host_key: ((tsa_host_key))
+      host_key: ((tsa_host_key.private_key))
       token_signing_key: ((token_signing_key))
       authorized_keys: [((worker_key.public_key))]
 
