@@ -1,18 +1,18 @@
 ---
 azs:
 - name: z1
+- name: z2
 
 networks:
 - name: concourse
   subnets:
   - az: z1
-    gateway: 10.244.15.1
-    range: 10.244.15.0/30
-    static:
-    - 10.244.15.2
-  - az: z1
-    gateway: 10.244.16.1
-    range: 10.244.16.0/24
+    gateway: ((z1_gateway))
+    range: ((z1_range))
+    static: ((z1_static))
+  - az: z2
+    gateway: ((z2_gateway))
+    range: ((z2_range))
 
 vm_types:
 - name: concourse

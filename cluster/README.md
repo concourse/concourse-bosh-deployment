@@ -15,7 +15,12 @@ For example, if you're going to deploy to a [BOSH
 Lite](http://bosh.io/docs/bosh-lite.html) director, you would run:
 
 ```shell
-bosh -e $BOSH_ENVIRONMENT update-cloud-config cloud_configs/vbox.yml
+bosh -e $BOSH_ENVIRONMENT update-cloud-config cloud_configs/vbox.yml \
+  -v z1_gateway=10.244.15.1 \
+  -v z1_range=10.244.15.0/30 \
+  -v z1_static="[10.244.15.2]" \
+  -v z2_gateway=10.244.16.1 \
+  -v z2_range=10.244.16.0/24
 
 bosh -e $BOSH_ENVIRONMENT deploy -d concourse concourse.yml \
   -l ../versions.yml \
