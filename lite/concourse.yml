@@ -88,6 +88,7 @@ instance_groups:
       tsa:
         host: 127.0.0.1
         port: 2222
+        host_public_key: ((tsa_host_key.public_key))
         worker_key: ((worker_key))
 
   - release: concourse
