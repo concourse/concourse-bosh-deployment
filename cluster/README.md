@@ -38,3 +38,34 @@ with `fly`:
 ```shell
 fly -t ci login -c http://10.244.15.2:8080
 ```
+
+## External Concourse worker
+
+In case you have a distributed setup with external concourse workers deployed on another BOSH 
+you can deploy those with:
+```shell
+bosh -e $BOSH_ENVIRONMENT deploy -d concourse-worker external-worker.yml \
+  -l ../versions.yml \
+  -v network_name=concourse \
+  -v worker_vm_type=concourse-workers \
+  -v instances=2 \
+  -v azs=[z1] \
+  -v deployment_name=concourse-worker \
+  -v tsa_host=10.244.15.2 \
+  -v worker_tags=[tags] \
+  -l <path/to/secrets.yml> 
+```
+
+The `secrets.yml` file has to contain the public tsa host key of the concourse master and the worker private 
+key:
+
+```yaml
+tsa_host_key:
+  public_key: <public_key>
+
+worker_key:
+  private_key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    ...
+    -----END RSA PRIVATE KEY-----
+```
