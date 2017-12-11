@@ -28,7 +28,8 @@ bosh -e $BOSH_ENVIRONMENT deploy -d concourse concourse.yml \
   --var web_vm_type=concourse \
   --var db_vm_type=concourse \
   --var db_persistent_disk_type=db \
-  --var worker_vm_type=concourse
+  --var worker_vm_type=concourse \
+  --var deployment_name=concourse
 ```
 
 This should then result in a Concourse running and listening at
