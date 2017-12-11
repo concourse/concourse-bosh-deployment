@@ -5,3 +5,21 @@
 - type: replace
   path: /instance_groups/name=web/jobs/name=atc/properties/tls_key?
   value: ((atc_tls.private_key))
+
+- type: replace
+  path: /variables/-
+  value:
+    name: default_ca
+    type: certificate
+    options:
+      common_name: ca
+      is_ca: true
+
+- type: replace
+  path: /variables/-
+  value:
+    name: atc_tls
+    type: certificate
+    options:
+      common_name: ((web_ip))
+      ca: default_ca
