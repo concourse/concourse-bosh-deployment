@@ -49,7 +49,7 @@ instance_groups:
       garden:
         forward_address: 127.0.0.1:7777
         listen_network: tcp
-        listen_address: 0.0.0.0:7777
+        listen_address: 127.0.0.1:7777
 
 update:
   canaries: 1
