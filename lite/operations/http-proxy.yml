@@ -6,13 +6,4 @@
   value: ((proxy_url))
 - type: replace
   path: /instance_groups/name=concourse/jobs/name=groundcrew/properties/no_proxy?
-  value: ((no_proxy_list)) # --var no_proxy_list='["localhost", "127.0.0.1", "example.com", "domain.com:8080"]'
-- type: replace
-  path: /instance_groups/name=concourse/jobs/name=garden/properties/garden/http_proxy?
-  value: ((proxy_url))
-- type: replace
-  path: /instance_groups/name=concourse/jobs/name=garden/properties/garden/https_proxy?
-  value: ((proxy_url))
-- type: replace
-  path: /instance_groups/name=concourse/jobs/name=garden/properties/garden/no_proxy?
-  value: ((no_proxy)) # --var no_proxy='localhost, 127.0.0.1, example.com, domain.com:8080'
+  value: ((no_proxy)) # --var no_proxy='["localhost", "127.0.0.1", "example.com", "domain.com:8080"]'
