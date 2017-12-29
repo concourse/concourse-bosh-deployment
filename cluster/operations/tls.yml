@@ -5,3 +5,7 @@
 - type: replace
   path: /instance_groups/name=web/jobs/name=atc/properties/tls_key?
   value: ((atc_tls.private_key))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/tls_bind_port?
+  value: ((tls_bind_port))
