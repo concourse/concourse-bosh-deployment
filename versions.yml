@@ -8,6 +8,8 @@
 ---
 concourse_version: '3.8.0'
 concourse_sha1: '99e134676df72e18c719ccfbd7977bd9449e6fd4'
+concourse_windows_worker_version: '3.8.0'
+concourse_windows_worker_sha1: '34399d9be603d8eb7c0fb84cf49c9ec3052d81c8'
 garden_runc_version: '1.9.0'
 garden_runc_sha1: '77bfe8bdb2c3daec5b40f5116a6216badabd196c'
 postgres_version: '23'
