@@ -1,0 +1,4 @@
+# requires the external-postgres.yml op file
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/postgresql/client_cert?
+  value: ((postgres_client_cert))
