@@ -21,7 +21,7 @@ instance_groups:
   azs: ((azs))
   vm_type: ((worker_vm_type))
   stemcell: trusty
-  networks: [{name: ((network_name))}]
+  networks: [{name: ((external_worker_network_name))}]
   jobs:
   - name: groundcrew
     release: concourse
