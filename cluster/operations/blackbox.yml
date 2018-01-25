@@ -2,6 +2,7 @@
   path: /addons?/-
   value:
     name: blackbox
+    exclude: {stemcell: [{os: windows2012R2}]}
     jobs:
     - name: blackbox
       release: concourse
