@@ -2,10 +2,12 @@
   path: /addons?/-
   value:
     name: blackbox
-    release: concourse
-    properties:
-      blackbox:
-        syslog:
-          destination:
-            transport: tls
-            address: ((blackbox_address))
+    jobs:
+    - name: blackbox
+      release: concourse
+      properties:
+        blackbox:
+          syslog:
+            destination:
+              transport: tls
+              address: ((blackbox_address))
