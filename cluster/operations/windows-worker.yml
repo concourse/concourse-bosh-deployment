@@ -10,7 +10,7 @@
   path: /stemcells/-
   value:
     alias: windows
-    os: ((windows_worker_os_version))
+    os: ((windows_worker_os))
     version: latest
 
 - type: replace
