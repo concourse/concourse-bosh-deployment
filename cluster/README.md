@@ -24,6 +24,7 @@ bosh -e $BOSH_ENVIRONMENT deploy -d concourse concourse.yml \
   -o operations/no-auth.yml \
   --var web_ip=10.244.15.2 \
   --var external_url=http://10.244.15.2:8080 \
+  --var azs=[z1] \
   --var network_name=concourse \
   --var web_vm_type=concourse \
   --var db_vm_type=concourse \
