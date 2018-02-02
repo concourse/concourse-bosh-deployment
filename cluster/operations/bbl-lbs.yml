@@ -1,0 +1,7 @@
+- type: replace
+  path: /instance_groups/name=web/vm_extensions?/-
+  value: lb
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/bind_port?
+  value: 80
+- type: replace
