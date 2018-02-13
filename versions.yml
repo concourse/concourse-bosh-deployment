@@ -6,12 +6,12 @@
 # manually. feel free to PR sane defaults along with newly supported
 # infrastructures and such!
 ---
-concourse_version: '3.8.0'
-concourse_sha1: '99e134676df72e18c719ccfbd7977bd9449e6fd4'
-garden_runc_version: '1.9.0'
-garden_runc_sha1: '77bfe8bdb2c3daec5b40f5116a6216badabd196c'
-postgres_version: '23'
-postgres_sha1: '4b5265bfd5f92cf14335a75658658a0db0bca927'
+concourse_version: '3.9.0'
+concourse_sha1: '633340daff7e5643566f05a6f09db02cb54c6324'
+garden_runc_version: '1.11.1'
+garden_runc_sha1: 'd9a7901c0502d97c043b857496f0f414a5843e8d'
+postgres_version: '25'
+postgres_sha1: '20929ee4b0c64fd97072a266311a6d00714124a7'
 virtualbox_cpi_version: '0.0.12'
 virtualbox_cpi_sha1: 537c77b087eeda859b1eb89553efa6f808214d50
 virtualbox_stemcell_version: '3468.5'
