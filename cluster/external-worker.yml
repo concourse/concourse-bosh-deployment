@@ -33,6 +33,7 @@ instance_groups:
         port: 2222
         host_public_key: ((tsa_host_key.public_key))
         worker_key: ((worker_key))
+        registration_mode: forward
       garden:
         forward_address: 127.0.0.1:7777
       baggageclaim:
