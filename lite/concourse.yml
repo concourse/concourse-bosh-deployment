@@ -80,7 +80,7 @@ instance_groups:
           password: ((postgres_password))
 
   - release: concourse
-    name: groundcrew
+    name: worker
     properties:
       drain_timeout: 10m
       baggageclaim:
