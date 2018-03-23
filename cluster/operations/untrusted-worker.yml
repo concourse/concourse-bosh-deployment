@@ -9,7 +9,7 @@
     azs: [z1]
     jobs:
     - release: concourse
-      name: worker
+      name: groundcrew
       consumes: {baggageclaim: {from: untrusted-baggageclaim}}
       properties:
         tags: ((untrusted_worker_tags))

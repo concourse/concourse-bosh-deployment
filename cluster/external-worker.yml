@@ -23,7 +23,7 @@ instance_groups:
   stemcell: trusty
   networks: [{name: ((external_worker_network_name))}]
   jobs:
-  - name: worker
+  - name: groundcrew
     release: concourse
     consumes: {baggageclaim: {from: worker-baggageclaim}}
     properties:

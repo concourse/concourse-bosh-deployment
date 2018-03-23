@@ -72,7 +72,7 @@ instance_groups:
   vm_type: ((worker_vm_type))
   jobs:
   - release: concourse
-    name: worker
+    name: groundcrew
     consumes: {baggageclaim: {from: worker-baggageclaim}}
     properties:
       drain_timeout: 10m
