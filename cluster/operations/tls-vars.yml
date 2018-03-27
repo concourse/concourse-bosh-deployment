@@ -1,0 +1,16 @@
+- type: replace
+  path: /variables/-
+  value:
+    name: atc_ca
+    type: certificate
+    options:
+      is_ca: true
+      common_name: atcCA
+
+- type: replace
+  path: /variables/-
+  value:
+    name: atc_tls
+    type: certificate
+    options:
+      ca: atc_ca
