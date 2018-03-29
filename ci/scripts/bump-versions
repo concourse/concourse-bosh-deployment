@@ -21,5 +21,5 @@ cat ./concourse-bosh-deployment/versions.yml | \
 cd bumped-repo
 
 git add -A
-git commit -m "bump versions.yml"
+git commit -m "bump versions.yml" --allow-empty
 git tag -f "v$concourse_version"
