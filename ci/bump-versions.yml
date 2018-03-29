@@ -7,7 +7,7 @@ image_resource:
     repository: concourse/bosh-cli
 
 inputs:
-- name: concourse-deployment
+- name: concourse-bosh-deployment
 - name: concourse-boshio
 - name: garden-runc
 - name: postgres-release
@@ -16,4 +16,4 @@ outputs:
 - name: bumped-repo
 
 run:
-  path: concourse-deployment/ci/scripts/bump-versions
+  path: concourse-bosh-deployment/ci/scripts/bump-versions
