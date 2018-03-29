@@ -15,40 +15,19 @@ releases:
   sha1: ((postgres_sha1))
   url: https://bosh.io/d/github.com/cloudfoundry/postgres-release?v=((postgres_version))
 
+stemcells:
+- alias: trusty
+  os: ubuntu-trusty
+  #version: latest
+  version: 3468.27 # there is a known issue in latest "3541.x" which would cause "permission denied"; once it's been fixed, we should use latest
+
+
 instance_groups:
-- name: web
-  instances: 1
-  azs: [z1]
-  networks: [{name: ((network_name))}]
-  stemcell: trusty
-  vm_type: ((web_vm_type))
-  jobs:
-  - release: concourse
-    name: atc
-    properties:
-      log_level: debug
 
-      token_signing_key: ((token_signing_key))
-
-      external_url: ((external_url))
-
-      postgresql:
-        database: &db_name atc
-        role: &db_role
-          name: concourse
-          password: ((postgres_password))
-
-  - release: concourse
-    name: tsa
-    properties:
-      log_level: debug
-      host_key: ((tsa_host_key))
-      token_signing_key: ((token_signing_key))
-      authorized_keys: [((worker_key.public_key))]
 
 - name: db
   instances: 1
-  azs: [z1]
+  azs: ((azs))
   networks: [{name: ((network_name))}]
   stemcell: trusty
   vm_type: ((db_vm_type))
@@ -60,13 +39,43 @@ instance_groups:
       databases:
         port: 5432
         databases:
-        - name: *db_name
+        - name: *atc_db
         roles:
-        - *db_role
+        - name: *atc_db
+          password: *atc_db_passwd
+
+
+- name: web
+  instances: 1
+  azs: ((azs))
+  networks: [{name: ((network_name))}]
+  stemcell: trusty
+  vm_type: ((web_vm_type))
+  jobs:
+  - name: atc
+    release: concourse
+    properties:
+      log_level: debug
+      token_signing_key: ((token_signing_key))
+      external_url: ((external_url))
+      postgresql:
+        database: &atc_db atc
+        role:
+          name: *atc_db
+          password: &atc_db_passwd "((atc-db-password))"
+
+  - name: tsa
+    release: concourse
+    properties:
+      log_level: debug
+      host_key: ((tsa_host_key))
+      token_signing_key: ((token_signing_key))
+      authorized_keys: [((worker_key.public_key))]
+
 
 - name: worker
   instances: 1
-  azs: [z1]
+  azs: ((azs))
   networks: [{name: ((network_name))}]
   stemcell: trusty
   vm_type: ((worker_vm_type))
@@ -91,23 +100,18 @@ instance_groups:
         listen_address: 0.0.0.0:7777
 
 variables:
-- name: postgres_password
-  type: password
 - name: token_signing_key
   type: rsa
 - name: tsa_host_key
   type: ssh
 - name: worker_key
   type: ssh
-
-stemcells:
-- alias: trusty
-  os: ubuntu-trusty
-  version: latest
+- name: atc-db-password
+  type: password
 
 update:
   canaries: 1
-  max_in_flight: 3
-  serial: false
-  canary_watch_time: 1000-60000
-  update_watch_time: 1000-60000
+  max_in_flight: 1
+  canary_watch_time: 30000-1200000
+  serial: true
+  update_watch_time: 30000-1200000
