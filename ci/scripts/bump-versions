@@ -7,8 +7,10 @@ git config --global user.name "CI Bot"
 
 git clone ./concourse-bosh-deployment ./bumped-repo
 
+concourse_version="$(cat concourse-boshio/version)"
+
 cat ./concourse-bosh-deployment/versions.yml | \
-  sed -e "s/concourse_version: .*/concourse_version: '$(cat concourse-boshio/version)'/" | \
+  sed -e "s/concourse_version: .*/concourse_version: '$concourse_version'/" | \
   sed -e "s/concourse_sha1: .*/concourse_sha1: '$(cat concourse-boshio/sha1)'/" | \
   sed -e "s/garden_runc_version: .*/garden_runc_version: '$(cat garden-runc/version)'/" | \
   sed -e "s/garden_runc_sha1: .*/garden_runc_sha1: '$(cat garden-runc/sha1)'/" | \
@@ -20,4 +22,4 @@ cd bumped-repo
 
 git add -A
 git commit -m "bump versions.yml"
-git tag -f "v$(cat concourse-boshio/version)"
+git tag -f "v$concourse_version"
