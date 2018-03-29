@@ -6,13 +6,18 @@
 # manually. feel free to PR sane defaults along with newly supported
 # infrastructures and such!
 ---
-concourse_version: '3.9.2'
-concourse_sha1: 'a0ebed14c296273f37ed2a7ec79b9a7814734e16'
-garden_runc_version: '1.12.0'
-garden_runc_sha1: '9cb3ec63f04d6cfb3047229544f261ff737f203e'
-postgres_version: '25'
-postgres_sha1: '20929ee4b0c64fd97072a266311a6d00714124a7'
-virtualbox_cpi_version: '0.0.12'
+concourse_version: 3.9.2
+concourse_sha1: a0ebed14c296273f37ed2a7ec79b9a7814734e16
+garden_runc_version: 1.12.1
+garden_runc_sha1: ed353e41eec34c3713d6d80c4cc890afc7291cca
+postgres_version: 22
+postgres_sha1: 86a1333122e9cdd051551c83ec26d36f6e325d6c
+virtualbox_cpi_version: 0.0.12
 virtualbox_cpi_sha1: 537c77b087eeda859b1eb89553efa6f808214d50
-virtualbox_stemcell_version: '3468.5'
-virtualbox_stemcell_sha1: 25301a41c15caad859b66efc0fd75bacdfc57dab
+virtualbox_stemcell_version: 3468.27
+virtualbox_stemcell_sha1: d46c920eac3d559b0337d95f376e408ac3ec0b41
+
+uaa_version: 55
+uaa_sha1: 393d844138f7b32017d7706684c36bf499e8cc79
+credhub_version: 1.7.2
+credhub_sha1: 6bff25b28dc5e099cb890b78eb727ebe7e52c909
