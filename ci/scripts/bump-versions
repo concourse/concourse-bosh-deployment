@@ -20,3 +20,4 @@ cd bumped-repo
 
 git add -A
 git commit -m "bump versions.yml"
+git tag -f "v$(cat concourse-boshio/version)"

@@ -34,7 +34,7 @@ This should then result in a Concourse running and listening at
 [http://192.168.100.4:8080](http://192.168.100.4:8080). You can then target it with `fly`:
 
 ```shell
-fly -t vbox login -c http://192.168.100.4
+fly -t vbox login -c http://192.168.100.4:8080
 ```
 
 Different infrastructures will require different parameters specified as `-v
