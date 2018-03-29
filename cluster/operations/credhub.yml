@@ -1,0 +1,98 @@
+# Release
+- type: replace
+  path: /releases/-
+  value:
+    name: credhub
+    url: https://bosh.io/d/github.com/pivotal-cf/credhub-release?v=((credhub_version))
+    sha1: ((credhub_sha1))
+    version: ((credhub_version))
+
+# Variables
+- type: replace
+  path: /variables?/name=credhub-db-password?
+  value:
+    name: credhub-db-password
+    type: password
+- type: replace
+  path: /variables?/name=credhub-encryption-password?
+  value:
+    name: credhub-encryption-password
+    type: password
+    options:
+      length: 40
+      
+- type: replace
+  path: /variables?/name=concourse_to_credhub_secret?
+  value:
+    name: concourse_to_credhub_secret
+    type: password
+- type: replace
+  path: /variables?/name=uaa-jwt?
+  value:
+    name: uaa-jwt
+    type: rsa
+    options:
+      key_length: 4096
+
+# update DB instance to include credhub databases
+- type: replace
+  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/databases/-
+  value:
+    name: *credhub_db
+- type: replace
+  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/roles/-
+  value: 
+    name: *credhub_db
+    password: *credhub_db_passwd
+
+
+# add credhub integration with atc job
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/credhub?
+  value:
+    url: https://((concourse_host)):8844
+    tls:
+      ca_cert: ((concourse-ca))
+      insecure_skip_verify: true
+    client_id: concourse_to_credhub
+    client_secret: ((concourse_to_credhub_secret))
+
+
+# add credhub job to web instance group
+- type: replace
+  path: /instance_groups/name=web/jobs/-
+  value:
+    name: credhub
+    release: credhub
+    properties:
+      credhub:
+        port: 8844
+        authentication:
+          uaa:
+            #url: *uaa-url
+            url: "https://((concourse_host)):8443"
+            verification_key: ((uaa-jwt.public_key))
+            ca_certs:
+            - ((atc_tls.ca))
+        data_storage:
+          type: postgres
+          host: ((db_ip))
+          port: 5432
+
+          database: &credhub_db credhub
+          username: &credhub_db_role credhub
+          password: &credhub_db_passwd ((credhub-db-password))
+
+          require_tls: false
+        tls:
+          certificate: ((atc_tls.certificate))
+          private_key: ((atc_tls.private_key))
+        log_level: info
+        encryption:
+          keys:
+          - provider_name: int
+            encryption_password: ((credhub-encryption-password))
+            active: true
+          providers:
+          - name: int
+            type: internal
