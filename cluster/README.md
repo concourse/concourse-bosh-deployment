@@ -8,44 +8,74 @@ you get it going.
 
 You'll first need to set up the [Cloud
 Config](http://bosh.io/docs/cloud-config.html) on your director. This part
-depends on your infrastructure of choice. There are a few example configs under
-[cloud_configs/](cloud_configs/).
+depends on your infrastructure of choice. There are a few example configs under [cloud_configs/](cloud_configs/).
 
-For example, if you're going to deploy to a [BOSH
-Lite](http://bosh.io/docs/bosh-lite.html) director, you would run:
+For example, if you're going to deploy to a [BOSH Lite](http://bosh.io/docs/bosh-lite.html) director, you would run:
 
 ```shell
-bosh -e $BOSH_ENVIRONMENT update-cloud-config cloud_configs/vbox.yml
-
-bosh -e $BOSH_ENVIRONMENT deploy -d concourse concourse.yml \
-  -l ../versions.yml \
-  --vars-store cluster-creds.yml \
-  -o operations/static-web.yml \
-  -o operations/no-auth.yml \
-  --var web_ip=10.244.15.2 \
-  --var external_url=http://10.244.15.2:8080 \
-  --var network_name=concourse \
-  --var web_vm_type=concourse \
-  --var db_vm_type=concourse \
-  --var db_persistent_disk_type=db \
-  --var worker_vm_type=concourse \
-  --var deployment_name=concourse
+$ export BOSH_ENVIRONMENT=<YOUR ENV NAME>
+$ bosh -e $BOSH_ENVIRONMENT update-cloud-config cloud_configs/vbox.yml
 ```
 
-This should then result in a Concourse running and listening at
-[http://10.244.15.2:8080](http://10.244.15.2:8080), ready for targeting
-with `fly`:
+Then view and provide the right parameters according to your environment:
 
 ```shell
-fly -t ci login -c http://10.244.15.2:8080
+$ cd cluster
+$ vi concourse-params.yml
+```
+
+> Note: the params provided in `concourse-params.yml` are just samples, you MUST review and change them.
+
+If everything is ready, execute below command to deploy:
+
+```shell
+$ bosh deploy -d concourse concourse.yml \
+  -l ../versions.yml \
+  -l concourse-params.yml \
+  -o operations/static-web.yml \
+  -o operations/no-auth.yml \
+  --vars-store cluster-creds.yml 
+```
+
+> Note: There are a long list of ops files under folder of `/operations`, check them out and apply accordingly as per your requirements.
+> For example, if you want to have CredHub and UAA built-in, with some more requirements like tls, basic auth etc., you may try this:
+```
+$ bosh deploy -d concourse concourse.yml \
+  -l ../versions.yml \
+  -l concourse-params.yml \
+  -o operations/static-web.yml \
+  -o operations/static-db.yml \
+  -o operations/basic-auth.yml \
+  -o operations/privileged-https.yml \
+  -o operations/tls.yml \
+  -o operations/credhub.yml \
+  -o operations/uaa.yml \
+  --vars-store cluster-creds.yml 
+```
+
+This should then result in a Concourse running and listening at (as per the default ip configured in `concourse-params.yml` which is subject to change):
+- [http://10.244.0.100:8080](http://10.244.0.100:8080), or
+- [https://10.244.0.100](https://10.244.0.100) if you enabled `tls.yml` with `privileged-https.yml`
+
+It's ready for targeting with `fly`:
+
+```shell
+$ fly -t ci login -c http://10.244.0.100:8080
+```
+
+Or if you enabled tls:
+
+```shell
+$ fly -t ci login -c https://10.244.0.100 -k
 ```
 
 ## External Concourse worker
 
 In case you have a distributed setup with external concourse workers deployed on another BOSH 
 you can deploy those with:
+
 ```shell
-bosh -e $BOSH_ENVIRONMENT deploy -d concourse-worker external-worker.yml \
+$ bosh deploy -d concourse-worker external-worker.yml \
   -l ../versions.yml \
   -v network_name=concourse \
   -v worker_vm_type=concourse-workers \

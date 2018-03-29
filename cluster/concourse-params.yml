@@ -1,0 +1,12 @@
+azs: [z1]
+web_ip: 10.244.0.100
+external_url: https://10.244.0.100
+network_name: default
+web_vm_type: small
+db_vm_type: small
+db_persistent_disk_type: 5GB
+worker_vm_type: small
+deployment_name: concourse
+atc_basic_auth_username: admin # the password will be generated in the cred file
+concourse_host: 10.244.0.100
+db_ip: 10.244.0.101
