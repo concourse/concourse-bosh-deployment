@@ -5,3 +5,24 @@
 - type: replace
   path: /instance_groups/name=web/jobs/name=atc/properties/tls_key?
   value: ((atc_tls.private_key))
+
+# Variables
+- type: replace
+  path: /variables?/name=concourse-ca?
+  value:
+    name: concourse-ca
+    type: certificate
+    options:
+      is_ca: true
+      common_name: Concourse CA
+- type: replace
+  path: /variables?/name=atc_tls?
+  value:
+    name: atc_tls
+    type: certificate
+    options:
+      ca: concourse-ca
+      common_name: ((concourse_host))
+      alternative_names:
+      - ((concourse_host))
+      - ((web_ip))
