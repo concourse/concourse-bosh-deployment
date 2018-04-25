@@ -1,0 +1,22 @@
+# Local releases when deployment is in an environment with no Internet access
+
+- type: replace
+  path: /releases/name=concourse/url
+  value: file://((concourse_release))
+
+- type: remove
+  path: /releases/name=concourse/sha1
+
+- type: replace
+  path: /releases/name=garden-runc/url
+  value: file://((garden_runc_release))
+
+- type: remove
+  path: /releases/name=garden-runc/sha1
+
+- type: replace
+  path: /releases/name=postgres/url
+  value: file://((postgres_release))
+
+- type: remove
+  path: /releases/name=postgres/sha1
