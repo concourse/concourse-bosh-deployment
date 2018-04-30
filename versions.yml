@@ -6,8 +6,8 @@
 # manually. feel free to PR sane defaults along with newly supported
 # infrastructures and such!
 ---
-concourse_version: '3.12.0'
-concourse_sha1: '12746f25cd484bdd9a8ed7151cfed20a142de2fa'
+concourse_version: '3.13.0'
+concourse_sha1: 'aaa4e4d42adb2293abc79422351ca71ed548f95c'
 garden_runc_version: '1.13.1'
 garden_runc_sha1: '54cbb89cae1be0708aa056185671665d7f4b2a4f'
 postgres_version: '28'
