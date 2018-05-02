@@ -5,6 +5,6 @@
     tls:
       ca_cert:
         certificate: ((vault_cert.ca))
-      client_cert: ((vault_cert))
+      client_cert: ((vault_cert.client))
     auth:
       backend: cert
