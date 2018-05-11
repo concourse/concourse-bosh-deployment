@@ -1,0 +1,12 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/github_auth/api_url?
+  value: ((github_enterprise.api_url))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/github_auth/auth_url?
+  value: ((github_enterprise.auth_url))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/github_auth/token_url?
+  value: ((github_enterprise.token_url))
+

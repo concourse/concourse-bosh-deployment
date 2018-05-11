@@ -2,10 +2,13 @@
   path: /addons?/-
   value:
     name: blackbox
-    release: concourse
-    properties:
-      blackbox:
-        syslog:
-          destination:
-            transport: tls
-            address: ((blackbox_address))
+    exclude: {stemcell: [{os: windows2012R2}]}
+    jobs:
+    - name: blackbox
+      release: concourse
+      properties:
+        blackbox:
+          syslog:
+            destination:
+              transport: tls
+              address: ((blackbox_address))

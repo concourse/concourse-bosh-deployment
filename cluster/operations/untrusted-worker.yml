@@ -9,13 +9,15 @@
     azs: [z1]
     jobs:
     - release: concourse
-      name: groundcrew
+      name: worker
       consumes: {baggageclaim: {from: untrusted-baggageclaim}}
       properties:
         tags: ((untrusted_worker_tags))
         garden: {forward_address: "127.0.0.1:7777"}
         baggageclaim: {forward_address: "127.0.0.1:7788"}
-        tsa: {worker_key: ((worker_key))}
+        tsa:
+          worker_key: ((worker_key))
+          registration_mode: forward
     - release: concourse
       name: baggageclaim
       provides: {baggageclaim: {as: untrusted-baggageclaim}}

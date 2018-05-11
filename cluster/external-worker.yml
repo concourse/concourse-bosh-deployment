@@ -21,9 +21,9 @@ instance_groups:
   azs: ((azs))
   vm_type: ((worker_vm_type))
   stemcell: trusty
-  networks: [{name: ((network_name))}]
+  networks: [{name: ((external_worker_network_name))}]
   jobs:
-  - name: groundcrew
+  - name: worker
     release: concourse
     consumes: {baggageclaim: {from: worker-baggageclaim}}
     properties:
@@ -33,6 +33,7 @@ instance_groups:
         port: 2222
         host_public_key: ((tsa_host_key.public_key))
         worker_key: ((worker_key))
+        registration_mode: forward
       garden:
         forward_address: 127.0.0.1:7777
       baggageclaim:
