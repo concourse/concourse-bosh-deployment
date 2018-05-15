@@ -1,12 +1,4 @@
 - type: replace
-  path: /releases/-
-  value:
-    name: concourse-windows-worker
-    version: ((concourse_windows_worker_version))
-    sha1: ((concourse_windows_worker_sha1))
-    url: https://bosh.io/d/github.com/pivotal-cf-experimental/concourse-windows-worker-release?v=((concourse_windows_worker_version))
-
-- type: replace
   path: /stemcells/-
   value:
     alias: windows
@@ -23,10 +15,17 @@
     networks: [{name: private}]
     azs: [z1]
     jobs:
-    - name: concourse_windows
-      release: concourse-windows-worker
+    - name: houdini-windows
+      release: concourse
+      provides: {garden: {as: windows-garden}}
+    - name: baggageclaim-windows
+      release: concourse
+      provides: {baggageclaim: {as: windows-baggageclaim}}
+    - name: worker-windows
+      release: concourse
+      consumes:
+        baggageclaim: {from: windows-baggageclaim}
+        garden: {from: windows-garden}
       properties:
-        concourse_windows:
-          tsa_host: ((windows_worker_tsa_host))
-          tsa_public_key: ((tsa_host_key.public_key))
-          tsa_worker_private_key: ((worker_key.private_key))
+        tsa:
+          worker_key: ((worker_key))
