@@ -1,9 +1,9 @@
 - type: replace
   path: /instance_groups/name=concourse/jobs/name=worker/properties/http_proxy_url?
-  value: ((proxy_url))
+  value: ((http_proxy_url))
 - type: replace
   path: /instance_groups/name=concourse/jobs/name=worker/properties/https_proxy_url?
-  value: ((proxy_url))
+  value: ((https_proxy_url))
 - type: replace
   path: /instance_groups/name=concourse/jobs/name=worker/properties/no_proxy?
   value: ((no_proxy)) # --var no_proxy='["localhost", "127.0.0.1", "example.com", "domain.com:8080"]'
