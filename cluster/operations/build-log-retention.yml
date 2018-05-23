@@ -1,0 +1,5 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/build_log_retention?
+  value:
+    default: ((build_logs_default))
+    maximum: ((build_logs_maximum))
