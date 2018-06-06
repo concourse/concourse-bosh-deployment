@@ -1,7 +1,0 @@
-- type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/local/users
-  value: [test]
-
-- type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/add_local_users?
-  value: ['test:$2a$10$VbHzd/YB3Q7WrKfZ3WJ1y.YVDU2GpUYnW8TZ3vAIfYSTqOkP/w5om']
