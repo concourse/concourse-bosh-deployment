@@ -40,6 +40,29 @@ with `fly`:
 fly -t ci login -c http://10.244.15.2:8080
 ```
 
+To deploy a concourse to a bosh director brought up with [bosh bootloader](https://github.com/cloudfoundry/bosh-bootloader) run the following command:
+
+```bash
+bosh deploy -d concourse concourse.yml \
+  -l ../versions.yml \
+  --vars-store cluster-creds.yml \
+  -o operations/no-auth.yml \
+  -o operations/privileged-http.yml \
+  -o operations/privileged-https.yml \
+  -o operations/tls.yml \
+  -o operations/tls-vars.yml \
+  -o operations/web-network-extension.yml \
+  --var network_name=default \
+  --var external_url=$external_url \
+  --var web_vm_type=default \
+  --var db_vm_type=default \
+  --var db_persistent_disk_type=10GB \
+  --var worker_vm_type=default \
+  --var deployment_name=concourse \
+  --var web_network_name=private \
+  --var web_network_vm_extension=lb
+```
+
 ## External Concourse worker
 
 In case you have a distributed setup with external concourse workers deployed on another BOSH
