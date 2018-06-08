@@ -6,8 +6,8 @@
 # manually. feel free to PR sane defaults along with newly supported
 # infrastructures and such!
 ---
-concourse_version: '3.14.0'
-concourse_sha1: '4ad128ab8ef049b94e437b1f1d791ce1c369e91e'
+concourse_version: '3.14.1'
+concourse_sha1: '6be91b70ecc7ce233d2aff5d03ed28c8eab3d132'
 concourse_windows_worker_version: '3.13.0'
 concourse_windows_worker_sha1: '98454e4863c3819f1ccfc1d0b0d07f6ee4efdb1b'
 garden_runc_version: '1.14.0'
