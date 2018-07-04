@@ -5,13 +5,13 @@
     client_secret: ((github_client.password))
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/main_team/github?/users
+  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/github/users
   value: ((main_team.github.users))
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/main_team/github?/orgs
+  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/github/orgs
   value: ((main_team.github.orgs))
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/main_team/github?/teams
+  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/github/teams
   value: ((main_team.github.teams))
