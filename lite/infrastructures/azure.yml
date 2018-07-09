@@ -1,0 +1,87 @@
+---
+- type: replace
+  path: /releases/-
+  value:
+    name: bosh-azure-cpi
+    version: "35.3.0"
+    url: https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-azure-cpi-release?v=35.3.0
+    sha1: 990fcfa31e70c99a109b8284d35f0b4e79665559
+
+- type: replace
+  path: /resource_pools/name=vms/stemcell?
+  value:
+    url: https://bosh.io/d/stemcells/bosh-azure-hyperv-ubuntu-trusty-go_agent?v=3468.51
+    sha1: 011164cb3bda4d76f5a3ec76ca11ecc746b38c77
+
+# Configure sizes
+- type: replace
+  path: /resource_pools/name=vms/cloud_properties?
+  value:
+    instance_type: Standard_D1_v2
+
+# Configure networks
+- type: replace
+  path: /networks/name=default/subnets/0/cloud_properties?
+  value:
+    resource_group_name: ((resource_group_name))
+    virtual_network_name: ((vnet_name))
+    subnet_name: ((subnet_name))
+
+- type: replace
+  path: /networks/-
+  value:
+    name: public
+    type: vip
+    subnets:
+    - cloud_properties:
+        resource_group_name: ((resource_group_name))
+
+- type: replace
+  path: /instance_groups/name=concourse/networks/name=default/static_ips?
+  value: [((internal_ip))]
+
+- type: replace
+  path: /instance_groups/name=concourse/networks/name=default/default?
+  value: [dns, gateway]
+
+- type: replace
+  path: /instance_groups/name=concourse/networks/-
+  value:
+    name: public
+    static_ips: [((public_ip))]
+
+# Add CPI
+- type: replace
+  path: /cloud_provider/template?
+  value:
+    name: azure_cpi
+    release: bosh-azure-cpi
+
+# Cloud properties
+- type: replace
+  path: /cloud_provider/properties/azure?
+  value:
+    environment: AzureCloud
+    subscription_id: ((subscription_id))
+    tenant_id: ((tenant_id))
+    client_id: ((client_id))
+    client_secret: ((client_secret))
+    resource_group_name: ((resource_group_name))
+    storage_account_name: ((storage_account_name))
+    default_security_group: ((default_security_group))
+    ssh_user: vcap
+    ssh_public_key: ((ssh.public_key))
+
+- type: replace
+  path: /cloud_provider/ssh_tunnel?
+  value:
+    host: ((public_ip))
+    port: 22
+    user: vcap
+    private_key: ((ssh.private_key))
+
+- type: replace
+  path: /variables/-
+  value:
+    name: ssh
+    type: ssh
