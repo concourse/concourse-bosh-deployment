@@ -4,7 +4,7 @@
     name: untrusted-worker
     instances: 1
     vm_type: ((untrusted_worker_vm_type))
-    stemcell: trusty
+    stemcell: xenial
     networks: [{name: ((untrusted_worker_network_name))}]
     azs: [z1]
     jobs:
