@@ -10,8 +10,8 @@
 - type: replace
   path: /resource_pools/name=vms/stemcell?
   value:
-    url: https://bosh.io/d/stemcells/bosh-openstack-kvm-ubuntu-trusty-go_agent?v=3421.9
-    sha1: 555422a138a90bc9864495b564a016dfb9d83961
+    url: https://bosh.io/d/stemcells/bosh-openstack-kvm-ubuntu-xenial-go_agent?v=87
+    sha1: cbe95d52638c8b402aac328c6877770bf98a19d8
 
 # Configure sizes
 - type: replace

@@ -20,7 +20,7 @@ instance_groups:
   instances: 1
   azs: [z1]
   networks: [{name: ((network_name))}]
-  stemcell: trusty
+  stemcell: xenial
   vm_type: ((web_vm_type))
   jobs:
   - release: concourse
@@ -50,7 +50,7 @@ instance_groups:
   instances: 1
   azs: [z1]
   networks: [{name: ((network_name))}]
-  stemcell: trusty
+  stemcell: xenial
   vm_type: ((db_vm_type))
   persistent_disk_type: ((db_persistent_disk_type))
   jobs:
@@ -68,7 +68,7 @@ instance_groups:
   instances: 1
   azs: [z1]
   networks: [{name: ((network_name))}]
-  stemcell: trusty
+  stemcell: xenial
   vm_type: ((worker_vm_type))
   jobs:
   - release: concourse
@@ -101,8 +101,8 @@ variables:
   type: ssh
 
 stemcells:
-- alias: trusty
-  os: ubuntu-trusty
+- alias: xenial
+  os: ubuntu-xenial
   version: latest
 
 update:

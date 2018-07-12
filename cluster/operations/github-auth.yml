@@ -3,4 +3,15 @@
   value:
     client_id: ((github_client.username))
     client_secret: ((github_client.password))
-    authorize: ((github_auth.authorize))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/github/users
+  value: ((main_team.github.users))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/github/orgs
+  value: ((main_team.github.orgs))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/github/teams
+  value: ((main_team.github.teams))

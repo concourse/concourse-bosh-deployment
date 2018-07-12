@@ -14,7 +14,3 @@ garden_runc_version: '1.14.0'
 garden_runc_sha1: 'be5e6d6a263be1437d99dc5e818deeb8ab2a03a4'
 postgres_version: '28'
 postgres_sha1: 'c1fcec62cb9d2e95e3b191e3c91d238e2b9d23fa'
-virtualbox_cpi_version: '0.0.12'
-virtualbox_cpi_sha1: 537c77b087eeda859b1eb89553efa6f808214d50
-virtualbox_stemcell_version: '3468.5'
-virtualbox_stemcell_sha1: 25301a41c15caad859b66efc0fd75bacdfc57dab

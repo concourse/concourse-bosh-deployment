@@ -11,8 +11,8 @@ releases:
   url: https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=((garden_runc_version))
 
 stemcells:
-- alias: trusty
-  os: ubuntu-trusty
+- alias: xenial
+  os: ubuntu-xenial
   version: latest
 
 instance_groups:
@@ -20,7 +20,7 @@ instance_groups:
   instances: ((instances))
   azs: ((azs))
   vm_type: ((worker_vm_type))
-  stemcell: trusty
+  stemcell: xenial
   networks: [{name: ((external_worker_network_name))}]
   jobs:
   - name: worker
