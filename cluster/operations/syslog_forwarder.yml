@@ -17,10 +17,13 @@
           tls_enabled: true
           permitted_peer: ((syslog_permitted_peer))
 
+          # prevent duplicate logs from components which send to syslog
+          # themselves
+          custom_rule: |
+            if ($programname startswith "vcap.") then stop
+
 - type: replace
   path: /releases/-
   value:
     name: syslog
-    sha1: ((syslog_release_sha1))
-    url: https://bosh.io/d/github.com/cloudfoundry/syslog-release?v=((syslog_release_version))
-    version: ((syslog_release_version))
+    version: latest
