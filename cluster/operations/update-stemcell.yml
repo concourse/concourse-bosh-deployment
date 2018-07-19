@@ -1,0 +1,18 @@
+- type: replace
+  path: /instance_groups/name=web/stemcell?
+  value: ((stemcell_alias))
+
+- type: replace
+  path: /instance_groups/name=db/stemcell?
+  value: ((stemcell_alias))
+
+- type: replace
+  path: /instance_groups/name=worker/stemcell?
+  value: ((stemcell_alias))
+
+- type: replace
+  path: /stemcells/-
+  value:
+    alias: ((stemcell_alias))
+    os: ((stemcell_os))
+    version: latest

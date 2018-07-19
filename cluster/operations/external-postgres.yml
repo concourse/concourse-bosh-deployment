@@ -1,6 +1,6 @@
 - type: remove
   path: /releases/name=postgres
-  
+
 - type: replace
   path: /instance_groups/name=web/jobs/name=atc/properties/postgresql?/host?
   value: ((postgres_host))
