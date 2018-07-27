@@ -1,0 +1,3 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/vault?/tls?/insecure_skip_verify?
+  value: ((vault_tls_skip_verify))
