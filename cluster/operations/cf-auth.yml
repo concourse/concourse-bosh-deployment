@@ -1,0 +1,9 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/cf_auth?/client_id
+  value: ((cf_client_id))
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/cf_auth?/client_secret
+  value: ((cf_client_secret))
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/cf_auth?/api_url
+  value: ((cf_api_url))
