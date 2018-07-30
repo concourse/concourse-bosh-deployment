@@ -13,8 +13,12 @@
       consumes: {baggageclaim: {from: untrusted-baggageclaim}}
       properties:
         tags: ((untrusted_worker_tags))
-        garden: {forward_address: "127.0.0.1:7777"}
-        baggageclaim: {forward_address: "127.0.0.1:7788"}
+        garden:
+          address: "127.0.0.1:7777" # this can be removed > 4.0
+          forward_address: "127.0.0.1:7777"
+        baggageclaim:
+          url: "http://127.0.0.1:7788" # this can be removed > 4.0
+          forward_address: "127.0.0.1:7788"
         tsa:
           worker_key: ((worker_key))
           registration_mode: forward
