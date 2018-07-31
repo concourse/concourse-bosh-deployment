@@ -1,0 +1,19 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/generic_oauth?
+  value:
+    client_id: ((oauth_client_username))
+    client_secret: ((oauth_client_password))
+    auth_url: ((oauth_auth_url))
+    token_url: ((oauth_token_url))
+    userinfo_url: ((oauth_userinfo_url))
+    scopes: ((oauth_scopes))
+    groups_key: ((oauth_groups_key))
+    display_name: ((oauth_display_name))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/oauth/users
+  value: ((main_team.oauth.oauth_users))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/oauth/groups
+  value: ((main_team.oauth.oauth_groups))
