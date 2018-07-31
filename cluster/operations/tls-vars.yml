@@ -13,4 +13,5 @@
     name: atc_tls
     type: certificate
     options:
+      common_name: ((external_hostname))
       ca: atc_ca
