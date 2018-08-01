@@ -19,8 +19,8 @@ portion of these configurations tested in CI. Use at your own risk!**
 Clone this repo.
 
 ```shell
-git clone https://github.com/concourse/concourse-deployment.git
-cd concourse-deployment
+git clone https://github.com/concourse/concourse-bosh-deployment.git
+cd concourse-bosh-deployment
 ```
 
 Then, choose your adventure below.
