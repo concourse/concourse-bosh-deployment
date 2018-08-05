@@ -6,12 +6,12 @@
 
 - type: replace
   path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/github/users
-  value: ((main_team.github.users))
+  value: ((main_team.github_users))
 
 - type: replace
   path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/github/orgs
-  value: ((main_team.github.orgs))
+  value: ((main_team.github_orgs))
 
 - type: replace
   path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/github/teams
-  value: ((main_team.github.teams))
+  value: ((main_team.github_teams))
