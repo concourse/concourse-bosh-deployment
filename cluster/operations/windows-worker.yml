@@ -12,7 +12,7 @@
     instances: 1
     vm_type: ((windows_worker_vm_type))
     stemcell: windows
-    networks: [{name: ((network))}]
+    networks: [{name: ((network_name))}]
     azs: [z1]
     jobs:
     - name: houdini-windows
