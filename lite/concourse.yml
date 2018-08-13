@@ -58,9 +58,13 @@ instance_groups:
         role:
           name: atc
           password: ((postgres_password))
-
-      no_really_i_dont_want_any_auth: true
-
+      add_local_users:
+      - concourse:((concourse_password))
+      main_team:
+        auth:
+          local:
+            users:
+            - concourse
   - release: concourse
     name: tsa
     properties:
@@ -116,6 +120,8 @@ cloud_provider:
     - time4.google.com
 
 variables:
+- name: concourse_password
+  type: password
 - name: mbus_bootstrap_password
   type: password
 - name: postgres_password
