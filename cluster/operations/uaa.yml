@@ -1,0 +1,113 @@
+# release
+- type: replace
+  path: /releases/-
+  value:
+    name: uaa
+    url: https://bosh.io/d/github.com/cloudfoundry/uaa-release?v=((uaa_version))
+    sha1: ((uaa_sha1))
+    version: ((uaa_version))
+
+# update postgres job to have uaa database
+- type: replace
+  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/databases/-
+  value:
+    name: *uaa_db
+- type: replace
+  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/roles/-
+  value: 
+    name: *uaa_db
+    password: *uaa_db_passwd
+
+# add UAA job to web instance group
+- type: replace
+  path: /instance_groups/name=web/jobs/-
+  value:
+    name: uaa
+    release: uaa
+    consumes: {database: {from: db}}
+    properties:
+      uaa:
+        url: &uaa-url "https://((web_ip)):8443"
+        port: -1
+        scim:
+          users:
+          - name: admin
+            password: ((uaa_users_admin))
+            groups:
+            - scim.write
+            - scim.read
+            - bosh.admin
+            - credhub.read
+            - credhub.write
+        admin: {client_secret: ((uaa_admin))}
+        login: {client_secret: ((uaa_login))}
+        zones: {internal: {hostnames: []}}
+        sslCertificate: ((atc_tls.certificate))
+        sslPrivateKey: ((atc_tls.private_key))
+        jwt:
+          revocable: true
+          policy:
+            active_key_id: key-1
+            keys:
+              key-1:
+                signingKey: ((uaa_jwt.private_key))
+      uaadb:
+        #address: ((db_ip))
+        port: 5432
+        db_scheme: postgresql
+        databases:
+        - tag: uaa
+          name: &uaa_db uaa
+        roles: 
+        - tag: admin
+          name: *uaa_db
+          password: &uaa_db_passwd ((uaa_db_password))
+      encryption:
+        active_key_label: key-1
+        encryption_keys:
+        - label: key-1
+          passphrase: ((uaa_encryption_key))
+      login:
+        saml:
+          serviceProviderCertificate: ((atc_tls.certificate))
+          serviceProviderKey: ((atc_tls.private_key))
+          serviceProviderKeyPassword: ""
+
+# variables
+- type: replace
+  path: /variables?/name=uaa_db_password?
+  value:
+    name: uaa_db_password
+    type: password
+- type: replace
+  path: /variables?/name=uaa_users_admin?
+  value:
+    name: uaa_users_admin
+    type: password
+- type: replace
+  path: /variables?/name=concourse_to_credhub_secret?
+  value:
+    name: concourse_to_credhub_secret
+    type: password
+- type: replace
+  path: /variables?/name=uaa_admin?
+  value:
+    name: uaa_admin
+    type: password
+- type: replace
+  path: /variables?/name=uaa_login?
+  value:
+    name: uaa_login
+    type: password
+- type: replace
+  path: /variables?/name=uaa_jwt?
+  value:
+    name: uaa_jwt
+    type: rsa
+    options:
+      key_length: 4096
+- type: replace
+  path: /variables?/name=uaa_encryption_key?
+  value:
+    name: uaa_encryption_key
+    type: password
