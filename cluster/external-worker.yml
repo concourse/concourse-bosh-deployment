@@ -35,6 +35,7 @@ instance_groups:
         worker_key: ((worker_key))
         registration_mode: forward
       garden:
+        address: 127.0.0.1:7777
         forward_address: 127.0.0.1:7777
       baggageclaim:
         forward_address: 127.0.0.1:7788
