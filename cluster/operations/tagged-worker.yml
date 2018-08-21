@@ -1,0 +1,28 @@
+- type: replace
+  path: /instance_groups/-
+  value:
+    name: worker-((worker_tag))
+    instances: 1
+    vm_type: ((worker_vm_type))
+    stemcell: xenial
+    networks: [{name: ((network_name))}]
+    azs: [z1]
+    jobs:
+    - release: concourse
+      name: worker
+      consumes: {baggageclaim: {from: baggageclaim-((worker_tag))}}
+      properties:
+        drain_timeout: 10m
+        tsa: {worker_key: ((worker_key))}
+        tags: [((worker_tag))]
+    - release: concourse
+      name: baggageclaim
+      provides: {baggageclaim: {as: baggageclaim-((worker_tag))}}
+      properties: {log_level: debug}
+
+    - release: garden-runc
+      name: garden
+      properties:
+        garden:
+          listen_network: tcp
+          listen_address: 0.0.0.0:7777
