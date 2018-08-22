@@ -1,0 +1,36 @@
+# Enable UAA as ATC's generic_oauth provider
+# Please add uaa.yml before this ops file
+
+# update UAA job by adding new client
+- type: replace
+  path: /instance_groups/name=web/jobs/name=uaa/properties/uaa/clients?/concourse_generic_oauth_client
+  value:
+    id: concourse_generic_oauth_client
+    secret: ((concourse_generic_oauth_client_secret))
+    override: true
+    scope: openid,email,profile,roles
+    authorized-grant-types: "authorization_code,refresh_token"
+    access-token-validity: 3600
+    refresh-token-validity: 7200
+    redirect-uri: https://((web_ip))/sky/issuer/callback
+
+# integrate ATC by adding generic_oauth part
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/generic_oauth?
+  value:
+    auth_url: "https://((web_ip)):8443/oauth/authorize"
+    ca_cert: ((atc_ca.ca))
+    client_id: concourse_generic_oauth_client
+    client_secret: ((concourse_generic_oauth_client_secret))
+    display_name: "UAA OAuth Provider"
+    groups_key: []
+    scopes: []
+    token_url: "https://((web_ip)):8443/oauth/token"
+    userinfo_url: "https://((web_ip)):8443/userinfo"
+
+# variables
+- type: replace
+  path: /variables/name=concourse_generic_oauth_client_secret?
+  value:
+    name: concourse_generic_oauth_client_secret
+    type: password
