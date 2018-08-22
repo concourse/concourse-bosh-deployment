@@ -19,7 +19,7 @@
   path: /instance_groups/name=web/jobs/name=atc/properties/generic_oauth?
   value:
     auth_url: "https://((web_ip)):8443/oauth/authorize"
-    ca_cert: ((atc_ca.ca))
+    ca_cert: ((atc_ca))
     client_id: concourse_generic_oauth_client
     client_secret: ((concourse_generic_oauth_client_secret))
     display_name: "UAA OAuth Provider"
