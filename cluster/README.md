@@ -40,6 +40,14 @@ with `fly`:
 fly -t ci login -c http://10.244.15.2:8080
 ```
 
+## Using BOSH BootLoader
+
+The `bbl` project maintains documentation for deploying Concourse quickly and
+easily across a few supported IaaSes. Consult their
+[`concourse.md`](https://github.com/cloudfoundry/bosh-bootloader/blob/master/docs/concourse.md)
+docs for more information.
+
+
 ## External Concourse worker
 
 In case you have a distributed setup with external concourse workers deployed on another BOSH
