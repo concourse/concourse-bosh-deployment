@@ -18,7 +18,7 @@ releases:
 instance_groups:
 - name: web
   instances: 1
-  azs: [z1]
+  azs: ((availability_zone))
   networks: [{name: ((network_name))}]
   stemcell: xenial
   vm_type: ((web_vm_type))
@@ -48,7 +48,7 @@ instance_groups:
 
 - name: db
   instances: 1
-  azs: [z1]
+  azs: ((availability_zone))
   networks: [{name: ((network_name))}]
   stemcell: xenial
   vm_type: ((db_vm_type))
@@ -66,7 +66,7 @@ instance_groups:
 
 - name: worker
   instances: 1
-  azs: [z1]
+  azs: ((availability_zone))
   networks: [{name: ((network_name))}]
   stemcell: xenial
   vm_type: ((worker_vm_type))
