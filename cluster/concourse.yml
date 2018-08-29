@@ -17,7 +17,7 @@ releases:
 
 instance_groups:
 - name: web
-  instances: 1
+  instances: ((web_instance_count))
   azs: [z1]
   networks: [{name: ((network_name))}]
   stemcell: xenial
@@ -47,7 +47,7 @@ instance_groups:
       authorized_keys: [((worker_key.public_key))]
 
 - name: db
-  instances: 1
+  instances: ((db_instance_count))
   azs: [z1]
   networks: [{name: ((network_name))}]
   stemcell: xenial
@@ -65,7 +65,7 @@ instance_groups:
         - *db_role
 
 - name: worker
-  instances: 1
+  instances: ((worker_instance_count))
   azs: [z1]
   networks: [{name: ((network_name))}]
   stemcell: xenial
