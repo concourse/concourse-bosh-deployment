@@ -1,0 +1,12 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/basic_auth_username?
+  value: ((atc_basic_auth_username))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/basic_auth_password?
+  value: ((atc_basic_auth_password))
+
+- type: replace
+  path: /variables/name=atc_basic_auth_password?/type
+  value: password
+
