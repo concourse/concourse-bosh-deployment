@@ -14,5 +14,5 @@
     type: certificate
     options:
       ca: atc_ca
-      common_name: ((external_host))
-      alternative_names: [((external_host))]
+      common_name: ((external_url))
+      alternative_names: [((external_url))]
