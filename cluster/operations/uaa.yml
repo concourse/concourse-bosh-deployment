@@ -24,7 +24,7 @@
   value:
     name: uaa
     release: uaa
-    consumes: {database: {from: db}}
+    consumes: {database: {from: postgres}}
     properties:
       uaa:
         url: &uaa-url "https://((web_ip)):8443"
