@@ -1,0 +1,15 @@
+#
+#  This operations file will configure atc to use the "random"
+#  container placement strategy, which you may find helps performance
+#  for some cases. This overrides the out-of-the-box default of
+#  "volume-locality".
+#
+#  You can read more about this setting, and performance in general,
+#  [here][1].
+#
+#    [1]: https://discuss.concourse-ci.org/t/concourse-ci-performance-recommendations/344/2
+#
+---
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/container_placement_strategy?
+  value: "random"
