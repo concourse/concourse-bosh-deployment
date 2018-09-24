@@ -14,7 +14,7 @@
     name: *uaa_db
 - type: replace
   path: /instance_groups/name=db/jobs/name=postgres/properties/databases/roles/-
-  value: 
+  value:
     name: *uaa_db
     password: *uaa_db_passwd
 
@@ -28,7 +28,7 @@
     properties:
       uaa:
         url: &uaa-url "https://((web_ip)):8443"
-        port: -1
+        port: 8181
         scim:
           users:
           - name: admin
@@ -58,7 +58,7 @@
         databases:
         - tag: uaa
           name: &uaa_db uaa
-        roles: 
+        roles:
         - tag: admin
           name: *uaa_db
           password: &uaa_db_passwd ((uaa_db_password))
