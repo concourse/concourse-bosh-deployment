@@ -12,21 +12,21 @@
     authorized-grant-types: "authorization_code,refresh_token"
     access-token-validity: 3600
     refresh-token-validity: 7200
-    redirect-uri: https://((web_ip))/sky/issuer/callback
+    redirect-uri: "((external_url))/sky/issuer/callback"
 
 # integrate ATC by adding generic_oauth part
 - type: replace
   path: /instance_groups/name=web/jobs/name=atc/properties/generic_oauth?
   value:
-    auth_url: "https://((web_ip)):8443/oauth/authorize"
+    auth_url: "((external_url)):8443/oauth/authorize"
     ca_cert: ((atc_ca))
     client_id: concourse_generic_oauth_client
     client_secret: ((concourse_generic_oauth_client_secret))
     display_name: "UAA OAuth Provider"
     groups_key: []
     scopes: []
-    token_url: "https://((web_ip)):8443/oauth/token"
-    userinfo_url: "https://((web_ip)):8443/userinfo"
+    token_url: "((external_url)):8443/oauth/token"
+    userinfo_url: "((external_url)):8443/userinfo"
 
 # variables
 - type: replace
