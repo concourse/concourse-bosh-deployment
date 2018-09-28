@@ -7,24 +7,12 @@
     sha1: ((uaa_sha1))
     version: ((uaa_version))
 
-# update postgres job to have uaa database
-- type: replace
-  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/databases/-
-  value:
-    name: *uaa_db
-- type: replace
-  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/roles/-
-  value: 
-    name: *uaa_db
-    password: *uaa_db_passwd
-
 # add UAA job to web instance group
 - type: replace
   path: /instance_groups/name=web/jobs/-
   value:
     name: uaa
     release: uaa
-    consumes: {database: {from: db}}
     properties:
       uaa:
         url: &uaa-url "https://((web_ip)):8443"
@@ -52,13 +40,12 @@
               key-1:
                 signingKey: ((uaa_jwt.private_key))
       uaadb:
-        #address: ((db_ip))
         port: 5432
         db_scheme: postgresql
         databases:
         - tag: uaa
           name: &uaa_db uaa
-        roles: 
+        roles:
         - tag: admin
           name: *uaa_db
           password: &uaa_db_passwd ((uaa_db_password))
@@ -72,6 +59,17 @@
           serviceProviderCertificate: ((atc_tls.certificate))
           serviceProviderKey: ((atc_tls.private_key))
           serviceProviderKeyPassword: ""
+
+# update postgres job to have uaa database
+- type: replace
+  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/databases/-
+  value:
+    name: *uaa_db
+- type: replace
+  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/roles/-
+  value:
+    name: *uaa_db
+    password: *uaa_db_passwd
 
 # variables
 - type: replace
