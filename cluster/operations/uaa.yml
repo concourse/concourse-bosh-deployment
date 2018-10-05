@@ -15,7 +15,7 @@
     release: uaa
     properties:
       uaa:
-        url: &uaa-url "https://((web_ip)):8443"
+        url: &uaa-url "((external_url)):8443"
         port: 8181
         scim:
           users:
