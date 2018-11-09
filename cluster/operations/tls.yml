@@ -1,7 +1,7 @@
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/tls_cert?
+  path: /instance_groups/name=web/jobs/name=web/properties/tls?/certificate?
   value: ((atc_tls.certificate))
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/tls_key?
+  path: /instance_groups/name=web/jobs/name=web/properties/tls?/private_key?
   value: ((atc_tls.private_key))

@@ -15,17 +15,8 @@
     networks: [{name: ((network_name))}]
     azs: [z1]
     jobs:
-    - name: houdini-windows
-      release: concourse
-      provides: {garden: {as: windows-garden}}
-    - name: baggageclaim-windows
-      release: concourse
-      provides: {baggageclaim: {as: windows-baggageclaim}}
     - name: worker-windows
       release: concourse
-      consumes:
-        baggageclaim: {from: windows-baggageclaim}
-        garden: {from: windows-garden}
       properties:
-        tsa:
+        worker_gateway:
           worker_key: ((worker_key))
