@@ -1,4 +1,12 @@
 - type: replace
+  path: /releases/-
+  value:
+    name: "windows-utilities"
+    version: ((windows_utilities_version))
+    url: "https://bosh.io/d/github.com/cloudfoundry-incubator/windows-utilities-release?v=((windows_utilities_version))"
+    sha1: ((windows_utilities_sha1))
+
+- type: replace
   path: /stemcells/-
   value:
     alias: windows
@@ -15,6 +23,8 @@
     networks: [{name: ((network_name))}]
     azs: [z1]
     jobs:
+    - name: enable_ssh
+      release: windows-utilities
     - name: worker-windows
       release: concourse
       properties:
