@@ -2,23 +2,23 @@
   path: /releases/name=postgres
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/postgresql?/host?
+  path: /instance_groups/name=web/jobs/name=web/properties/postgresql?/host?
   value: ((postgres_host))
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/postgresql?/port?
+  path: /instance_groups/name=web/jobs/name=web/properties/postgresql?/port?
   value: ((postgres_port))
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/postgresql?/role?/name?
+  path: /instance_groups/name=web/jobs/name=web/properties/postgresql?/role?/name?
   value: ((postgres_role))
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/postgresql?/role?/password?
+  path: /instance_groups/name=web/jobs/name=web/properties/postgresql?/role?/password?
   value: ((postgres_password))
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/postgresql?/sslmode?
+  path: /instance_groups/name=web/jobs/name=web/properties/postgresql?/sslmode?
   value: disable
 
 - type: remove

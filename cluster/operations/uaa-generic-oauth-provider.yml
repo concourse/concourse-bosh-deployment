@@ -16,7 +16,7 @@
 
 # integrate ATC by adding generic_oauth part
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/generic_oauth?
+  path: /instance_groups/name=web/jobs/name=web/properties/generic_oauth?
   value:
     auth_url: "((external_url)):8443/oauth/authorize"
     ca_cert: ((atc_ca))
