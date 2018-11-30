@@ -1,5 +1,5 @@
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/vault?
+  path: /instance_groups/name=web/jobs/name=web/properties/vault?
   value:
     path_prefix: ((concourse_vault_mount))
     url: ((vault_url))
