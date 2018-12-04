@@ -3,17 +3,17 @@ name: ((deployment_name))
 
 releases:
 - name: concourse
-  version: ((concourse_version))
-  sha1: ((concourse_sha1))
-  url: https://bosh.io/d/github.com/concourse/concourse?v=((concourse_version))
+  version: 4.2.1
+  sha1: 470a6fdd7cb82fc723d7d78930c7d261ca4a6cb4
+  url: https://bosh.io/d/github.com/concourse/concourse?v=4.2.1
 - name: garden-runc
-  version: ((garden_runc_version))
-  sha1: ((garden_runc_sha1))
-  url: https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=((garden_runc_version))
+  version: 1.16.3
+  sha1: 2a7c813e7e4d862e19334addf022916fb6b91eb0
+  url: https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=1.16.3
 - name: postgres
-  version: ((postgres_version))
-  sha1: ((postgres_sha1))
-  url: https://bosh.io/d/github.com/cloudfoundry/postgres-release?v=((postgres_version))
+  version: 28
+  sha1: c1fcec62cb9d2e95e3b191e3c91d238e2b9d23fa
+  url: https://bosh.io/d/github.com/cloudfoundry/postgres-release?v=28
 
 instance_groups:
 - name: web
