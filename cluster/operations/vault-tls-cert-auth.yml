@@ -1,5 +1,5 @@
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/vault?
+  path: /instance_groups/name=web/jobs/name=web/properties/vault?
   value:
     url: ((vault_url))
     tls:
