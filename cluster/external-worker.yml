@@ -4,7 +4,7 @@ releases:
 - name: concourse
   version: ((concourse_version))
   sha1: ((concourse_sha1))
-  url: https://bosh.io/d/github.com/concourse/concourse?v=((concourse_version))
+  url: https://bosh.io/d/github.com/concourse/concourse-bosh-release?v=((concourse_version))
 
 stemcells:
 - alias: xenial
