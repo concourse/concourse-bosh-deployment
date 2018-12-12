@@ -6,10 +6,8 @@
 # manually. feel free to PR sane defaults along with newly supported
 # infrastructures and such!
 ---
-concourse_version: '4.2.1'
-concourse_sha1: '470a6fdd7cb82fc723d7d78930c7d261ca4a6cb4'
-concourse_windows_worker_version: '3.13.0'
-concourse_windows_worker_sha1: '98454e4863c3819f1ccfc1d0b0d07f6ee4efdb1b'
+concourse_version: '4.2.2'
+concourse_sha1: 'e4036597aa010806051ebb6596e4fdc2fc14f936'
 garden_runc_version: '1.16.3'
 garden_runc_sha1: '2a7c813e7e4d862e19334addf022916fb6b91eb0'
 postgres_version: '30'
