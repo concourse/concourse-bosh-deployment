@@ -1,5 +1,5 @@
 #
-#  This operations file will configure atc to include this HTTP header:
+#  This operations file will configure web to include this HTTP header:
 #
 #      X-Frame-Options: allow-from https://example.com/
 #
@@ -17,5 +17,5 @@
 #
 ---
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/x_frame_options?
+  path: /instance_groups/name=web/jobs/name=web/properties/x_frame_options?
   value: "allow ((x_frame_options_allow_from))"

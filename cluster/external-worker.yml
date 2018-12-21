@@ -5,10 +5,6 @@ releases:
   version: ((concourse_version))
   sha1: ((concourse_sha1))
   url: https://bosh.io/d/github.com/concourse/concourse-bosh-release?v=((concourse_version))
-- name: garden-runc
-  version: ((garden_runc_version))
-  sha1: ((garden_runc_sha1))
-  url: https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=((garden_runc_version))
 
 stemcells:
 - alias: xenial
@@ -25,33 +21,13 @@ instance_groups:
   jobs:
   - name: worker
     release: concourse
-    consumes: {baggageclaim: {from: worker-baggageclaim}}
-    properties:
-      tags: ((worker_tags))
-      tsa:
-        host: ((tsa_host))
-        port: 2222
-        host_public_key: ((tsa_host_key.public_key))
-        worker_key: ((worker_key))
-        registration_mode: forward
-      garden:
-        address: 127.0.0.1:7777
-        forward_address: 127.0.0.1:7777
-      baggageclaim:
-        forward_address: 127.0.0.1:7788
-  - name: baggageclaim
-    release: concourse
-    provides: {baggageclaim: {as: worker-baggageclaim}}
     properties:
       log_level: debug
-      bind_ip: 127.0.0.1
-  - name: garden
-    release: garden-runc
-    properties:
-      garden:
-        forward_address: 127.0.0.1:7777
-        listen_network: tcp
-        listen_address: 127.0.0.1:7777
+      tags: ((worker_tags))
+      worker_gateway:
+        hosts: [((tsa_host)):2222]
+        host_public_key: ((tsa_host_key.public_key))
+        worker_key: ((worker_key))
 
 update:
   canaries: 1

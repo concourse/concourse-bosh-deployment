@@ -1,5 +1,5 @@
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/generic_oauth?
+  path: /instance_groups/name=web/jobs/name=web/properties/generic_oauth?
   value:
     client_id: ((oauth_client_username))
     client_secret: ((oauth_client_password))
@@ -11,9 +11,9 @@
     display_name: ((oauth_display_name))
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/oauth/users
+  path: /instance_groups/name=web/jobs/name=web/properties/main_team?/auth/oauth/users
   value: ((main_team.oauth.oauth_users))
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/oauth/groups
+  path: /instance_groups/name=web/jobs/name=web/properties/main_team?/auth/oauth/groups
   value: ((main_team.oauth.oauth_groups))
