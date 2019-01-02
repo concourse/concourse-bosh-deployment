@@ -7,9 +7,9 @@ releases:
   sha1: ((concourse_sha1))
   url: https://bosh.io/d/github.com/concourse/concourse-bosh-release?v=((concourse_version))
 - name: garden-runc
-  version: ((garden_runc_version))
-  sha1: ((garden_runc_sha1))
-  url: https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=((garden_runc_version))
+  version: ((bpm_version))
+  sha1: ((bpm_sha1))
+  url: https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=((bpm_version))
 - name: postgres
   version: ((postgres_version))
   sha1: ((postgres_sha1))
@@ -45,7 +45,7 @@ instance_groups:
     default: [gateway,dns]
   jobs:
   - release: concourse
-    name: atc
+    name: web
     properties:
       token_signing_key: ((token_signing_key))
 
@@ -58,19 +58,18 @@ instance_groups:
         role:
           name: atc
           password: ((postgres_password))
+
       add_local_users:
-      - concourse:((concourse_password))
+        concourse: ((concourse_password))
+
       main_team:
         auth:
           local:
-            users:
-            - concourse
-  - release: concourse
-    name: tsa
-    properties:
-      host_key: ((tsa_host_key))
-      token_signing_key: ((token_signing_key))
-      authorized_keys: [((worker_key.public_key))]
+            users: [concourse]
+
+      worker_gateway:
+        host_key: ((tsa_host_key))
+        authorized_keys: [((worker_key.public_key))]
 
   - release: postgres
     name: postgres
@@ -87,25 +86,13 @@ instance_groups:
     name: worker
     properties:
       drain_timeout: 10m
-      baggageclaim:
-        url: http://127.0.0.1:7788
-      tsa:
-        host: 127.0.0.1
-        port: 2222
+
+      worker_gateway:
+        hosts: [127.0.0.1:2222]
         host_public_key: ((tsa_host_key.public_key))
         worker_key: ((worker_key))
 
-  - release: concourse
-    name: baggageclaim
-    properties:
-      log_level: debug
-
-  - release: garden-runc
-    name: garden
-    properties:
       garden:
-        listen_network: tcp
-        listen_address: 0.0.0.0:7777
         allow_host_access: true
 
 cloud_provider:

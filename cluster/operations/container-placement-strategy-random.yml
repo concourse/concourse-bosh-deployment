@@ -1,5 +1,5 @@
 #
-#  This operations file will configure atc to use the "random"
+#  This operations file will configure web to use the "random"
 #  container placement strategy, which you may find helps performance
 #  for some cases. This overrides the out-of-the-box default of
 #  "volume-locality".
@@ -11,5 +11,5 @@
 #
 ---
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/container_placement_strategy?
+  path: /instance_groups/name=web/jobs/name=web/properties/container_placement_strategy?
   value: "random"
