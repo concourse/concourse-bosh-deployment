@@ -3,8 +3,6 @@
   value:
     client_id: ((oidc.client_username))
     client_secret: ((oidc.client_password))
-    auth_url: ((oidc.auth_url))
-    token_url: ((oidc.token_url))
     issuer: ((oidc.issuer_url))
     scopes: ((oidc.scopes))
     groups_key: ((oidc.groups_key))
