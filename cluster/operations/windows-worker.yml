@@ -1,4 +1,12 @@
 - type: replace
+  path: /releases/-
+  value:
+    name: "windows-utilities"
+    version: ((windows_utilities_version))
+    url: "https://bosh.io/d/github.com/cloudfoundry-incubator/windows-utilities-release?v=((windows_utilities_version))"
+    sha1: ((windows_utilities_sha1))
+
+- type: replace
   path: /stemcells/-
   value:
     alias: windows
@@ -15,17 +23,10 @@
     networks: [{name: ((network_name))}]
     azs: [z1]
     jobs:
-    - name: houdini-windows
-      release: concourse
-      provides: {garden: {as: windows-garden}}
-    - name: baggageclaim-windows
-      release: concourse
-      provides: {baggageclaim: {as: windows-baggageclaim}}
+    - name: enable_ssh
+      release: windows-utilities
     - name: worker-windows
       release: concourse
-      consumes:
-        baggageclaim: {from: windows-baggageclaim}
-        garden: {from: windows-garden}
       properties:
-        tsa:
+        worker_gateway:
           worker_key: ((worker_key))
