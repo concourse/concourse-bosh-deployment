@@ -26,7 +26,6 @@ instance_groups:
   - release: concourse
     name: atc
     properties:
-      log_level: debug
 
       token_signing_key: ((token_signing_key))
 
@@ -41,7 +40,6 @@ instance_groups:
   - release: concourse
     name: tsa
     properties:
-      log_level: debug
       host_key: ((tsa_host_key))
       token_signing_key: ((token_signing_key))
       authorized_keys: [((worker_key.public_key))]
@@ -80,7 +78,6 @@ instance_groups:
 
   - release: concourse
     name: baggageclaim
-    properties: {log_level: debug}
     provides: {baggageclaim: {as: worker-baggageclaim}}
 
   - release: garden-runc

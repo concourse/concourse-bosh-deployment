@@ -22,7 +22,6 @@
       name: baggageclaim
       provides: {baggageclaim: {as: untrusted-baggageclaim}}
       properties:
-        log_level: debug
         bind_ip: 127.0.0.1
     - release: garden-runc
       name: garden

@@ -97,8 +97,6 @@ instance_groups:
 
   - release: concourse
     name: baggageclaim
-    properties:
-      log_level: debug
 
   - release: garden-runc
     name: garden

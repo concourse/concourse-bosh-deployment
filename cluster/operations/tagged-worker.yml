@@ -18,7 +18,6 @@
     - release: concourse
       name: baggageclaim
       provides: {baggageclaim: {as: baggageclaim-((worker_tag))}}
-      properties: {log_level: debug}
 
     - release: garden-runc
       name: garden
