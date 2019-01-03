@@ -72,7 +72,6 @@ instance_groups:
   - release: concourse
     name: worker
     properties:
-      log_level: debug
       drain_timeout: 10m
       worker_gateway: {worker_key: ((worker_key))}
 
