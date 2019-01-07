@@ -1,17 +1,17 @@
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/github_auth?
+  path: /instance_groups/name=web/jobs/name=web/properties/github_auth?
   value:
     client_id: ((github_client.username))
     client_secret: ((github_client.password))
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/github/users
+  path: /instance_groups/name=web/jobs/name=web/properties/main_team?/auth/github/users
   value: ((main_team.github_users))
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/github/orgs
+  path: /instance_groups/name=web/jobs/name=web/properties/main_team?/auth/github/orgs
   value: ((main_team.github_orgs))
 
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/github/teams
+  path: /instance_groups/name=web/jobs/name=web/properties/main_team?/auth/github/teams
   value: ((main_team.github_teams))
