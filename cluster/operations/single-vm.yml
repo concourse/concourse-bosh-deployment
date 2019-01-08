@@ -1,0 +1,51 @@
+- type: remove
+  path: /instance_groups/name=db
+- type: remove
+  path: /instance_groups/name=worker
+- type: replace
+  path: /instance_groups/name=web/persistent_disk_type?
+  value: ((db_persistent_disk_type))
+#- type: replace
+#  path: /instance_groups/name=web/jobs/name=atc/properties/postgresql/host?
+#  value: 127.0.0.1
+#- type: replace
+#  path: /instance_groups/name=web/jobs/name=atc/properties/postgresql/sslmode?
+#  value: disable
+- type: replace
+  path: /instance_groups/name=web/jobs/-
+  value:
+    release: postgres
+    name: postgres
+    properties:
+      databases:
+        port: 5432
+        databases:
+        - name: atc
+        roles:
+        - name: concourse
+          password: ((postgres_password))
+- type: replace
+  path: /instance_groups/name=web/jobs/-
+  value:
+    release: concourse
+    name: worker
+    consumes: {baggageclaim: {from: worker-baggageclaim}}
+    properties:
+      drain_timeout: 10m
+      tsa: {worker_key: ((worker_key))}
+- type: replace
+  path: /instance_groups/name=web/jobs/-
+  value:
+    release: concourse
+    name: baggageclaim
+    properties: {log_level: debug}
+    provides: {baggageclaim: {as: worker-baggageclaim}}
+- type: replace
+  path: /instance_groups/name=web/jobs/-
+  value:
+    release: garden-runc
+    name: garden
+    properties:
+      garden:
+        listen_network: tcp
+        listen_address: 0.0.0.0:7777
