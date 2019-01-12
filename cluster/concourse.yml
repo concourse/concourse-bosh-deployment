@@ -31,8 +31,6 @@ instance_groups:
 
       external_url: ((external_url))
 
-      container_placement_strategy: ((container_placement_strategy))
-
       postgresql:
         database: &db_name atc
         role: &db_role
