@@ -29,7 +29,6 @@ instance_groups:
   - release: concourse
     name: web
     properties:
-
       token_signing_key: ((token_signing_key))
 
       external_url: ((external_url))
