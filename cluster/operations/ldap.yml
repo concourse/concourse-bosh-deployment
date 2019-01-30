@@ -11,7 +11,8 @@
     # Skip certificate verification. Default: false
     insecure_skip_verify: ((ldap_insecure_skip_verify))
     # The CA certificate for the LDAP auth provider’s endpoints.
-    ca_cert: ((ldap_ca_cert))
+    ca_cert: 
+      certificate: ((ldap_ca_cert))
     # Start on insecure port, then negotiate TLS. Default: false
     start_tls: ((ldap_start_tls))
 
@@ -36,10 +37,11 @@
     # Optional filter to apply when searching the directory. e.g. "(objectClass=posixGroup)"
     group_search_filter: ((ldap_group_search_filter))
     # Adds an additional requirement to the filter that an attribute in the group match the user’s attribute value.
-    # The exact filter being added is (=)
+    # The exact filter being added is (=) e.g. "member"
     group_search_group_attr: ((ldap_group_search_group_attr))
+    # dn for the group
     group_search_user_attr: ((ldap_group_search_user_attr))
-    # The attribute of the group that represents its name, e.g. "cn"
+    # The attribute of the group that represents its name, e.g. "cn" of group
     group_search_name_attr: ((ldap_group_search_name_attr))
     # Can either be ‘sub’ - search the whole sub tree or ‘one’ - only search one level. Defaults to ‘sub’ if empty.
     group_search_scope: ((ldap_group_search_scope))
