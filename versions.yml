@@ -8,7 +8,7 @@
 ---
 concourse_version: '4.2.2'
 concourse_sha1: '4107747823b7056c58620c34457746dcedb98cc5'
-garden_runc_version: '1.16.3'
-garden_runc_sha1: '2a7c813e7e4d862e19334addf022916fb6b91eb0'
+garden_runc_version: '1.18.2'
+garden_runc_sha1: 'f761349dfe829fb2e17ab53eb058267209275038'
 postgres_version: '30'
 postgres_sha1: 'a798999d29b9f5aa12035cff907b26674b491200'
