@@ -8,8 +8,8 @@
 ---
 concourse_version: '3.13.0'
 concourse_sha1: 'aaa4e4d42adb2293abc79422351ca71ed548f95c'
-garden_runc_version: '1.13.1'
-garden_runc_sha1: '54cbb89cae1be0708aa056185671665d7f4b2a4f'
+garden_runc_version: '1.18.2'
+garden_runc_sha1: 'f761349dfe829fb2e17ab53eb058267209275038'
 postgres_version: '28'
 postgres_sha1: 'c1fcec62cb9d2e95e3b191e3c91d238e2b9d23fa'
 virtualbox_cpi_version: '0.0.12'
