@@ -9,7 +9,7 @@ image_resource:
 inputs:
 - name: concourse-bosh-deployment
 - name: concourse-boshio
-- name: garden-runc
+- name: bpm-release
 - name: postgres-release
 
 outputs:
