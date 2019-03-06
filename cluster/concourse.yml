@@ -9,7 +9,7 @@ releases:
 - name: bpm
   version: ((bpm_version))
   sha1: ((bpm_sha1))
-  url: https://bosh.io/d/github.com/cloudfoundry/bpm-release?v=((bpm_version))
+  url: https://bosh.io/d/github.com/cloudfoundry-incubator/bpm-release?v=((bpm_version))
 - name: postgres
   version: ((postgres_version))
   sha1: ((postgres_sha1))
