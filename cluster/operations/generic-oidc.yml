@@ -1,0 +1,17 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/generic_oidc?
+  value:
+    client_id: ((oidc.client_username))
+    client_secret: ((oidc.client_password))
+    issuer: ((oidc.issuer_url))
+    scopes: ((oidc.scopes))
+    groups_key: ((oidc.groups_key))
+    display_name: ((oidc.display_name))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/oidc/users
+  value: ((main_team.oidc.users))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/main_team?/auth/oidc/groups
+  value: ((main_team.oidc.groups))

@@ -5,11 +5,11 @@ releases:
 - name: concourse
   version: ((concourse_version))
   sha1: ((concourse_sha1))
-  url: https://bosh.io/d/github.com/concourse/concourse?v=((concourse_version))
-- name: garden-runc
-  version: ((garden_runc_version))
-  sha1: ((garden_runc_sha1))
-  url: https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=((garden_runc_version))
+  url: https://bosh.io/d/github.com/concourse/concourse-bosh-release?v=((concourse_version))
+- name: bpm
+  version: ((bpm_version))
+  sha1: ((bpm_sha1))
+  url: https://bosh.io/d/github.com/cloudfoundry-incubator/bpm-release?v=((bpm_version))
 - name: postgres
   version: ((postgres_version))
   sha1: ((postgres_sha1))
@@ -23,11 +23,12 @@ instance_groups:
   stemcell: xenial
   vm_type: ((web_vm_type))
   jobs:
-  - release: concourse
-    name: atc
-    properties:
-      log_level: debug
+  - release: bpm
+    name: bpm
 
+  - release: concourse
+    name: web
+    properties:
       token_signing_key: ((token_signing_key))
 
       external_url: ((external_url))
@@ -38,13 +39,9 @@ instance_groups:
           name: concourse
           password: ((postgres_password))
 
-  - release: concourse
-    name: tsa
-    properties:
-      log_level: debug
-      host_key: ((tsa_host_key))
-      token_signing_key: ((token_signing_key))
-      authorized_keys: [((worker_key.public_key))]
+      worker_gateway:
+        host_key: ((tsa_host_key))
+        authorized_keys: [((worker_key.public_key))]
 
 - name: db
   instances: 1
@@ -73,22 +70,9 @@ instance_groups:
   jobs:
   - release: concourse
     name: worker
-    consumes: {baggageclaim: {from: worker-baggageclaim}}
     properties:
       drain_timeout: 10m
-      tsa: {worker_key: ((worker_key))}
-
-  - release: concourse
-    name: baggageclaim
-    properties: {log_level: debug}
-    provides: {baggageclaim: {as: worker-baggageclaim}}
-
-  - release: garden-runc
-    name: garden
-    properties:
-      garden:
-        listen_network: tcp
-        listen_address: 0.0.0.0:7777
+      worker_gateway: {worker_key: ((worker_key))}
 
 variables:
 - name: postgres_password

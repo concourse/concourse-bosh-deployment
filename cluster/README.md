@@ -21,7 +21,9 @@ bosh -e $BOSH_ENVIRONMENT deploy -d concourse concourse.yml \
   -l ../versions.yml \
   --vars-store cluster-creds.yml \
   -o operations/static-web.yml \
-  -o operations/no-auth.yml \
+  -o operations/basic-auth.yml \
+  --var local_user.username=admin \
+  --var local_user.password=admin \
   --var web_ip=10.244.15.2 \
   --var external_url=http://10.244.15.2:8080 \
   --var network_name=concourse \
@@ -37,7 +39,7 @@ This should then result in a Concourse running and listening at
 with `fly`:
 
 ```shell
-fly -t ci login -c http://10.244.15.2:8080
+fly -t ci login -c http://10.244.15.2:8080 -u admin -p admin
 ```
 
 ## Using BOSH BootLoader

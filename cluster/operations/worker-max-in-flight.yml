@@ -1,0 +1,3 @@
+- type: replace
+  path: /instance_groups/name=worker/update?/max_in_flight?
+  value: ((worker_update_max_in_flight))

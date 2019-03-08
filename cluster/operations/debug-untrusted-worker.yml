@@ -1,0 +1,4 @@
+---
+- type: replace
+  path: /instance_groups/name=untrusted-worker/jobs/name=worker/properties/log_level?
+  value: debug
