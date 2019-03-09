@@ -6,10 +6,10 @@ releases:
   version: ((concourse_version))
   sha1: ((concourse_sha1))
   url: https://bosh.io/d/github.com/concourse/concourse-bosh-release?v=((concourse_version))
-- name: garden-runc
+- name: bpm
   version: ((bpm_version))
   sha1: ((bpm_sha1))
-  url: https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=((bpm_version))
+  url: https://bosh.io/d/github.com/cloudfoundry-incubator/bpm-release?v=((bpm_version))
 - name: postgres
   version: ((postgres_version))
   sha1: ((postgres_sha1))
@@ -44,6 +44,10 @@ instance_groups:
   - name: default
     default: [gateway,dns]
   jobs:
+  - release: bpm
+    name: bpm
+    properties: {}
+
   - release: concourse
     name: web
     properties:
