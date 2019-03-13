@@ -41,7 +41,8 @@ instance_groups:
 
       worker_gateway:
         host_key: ((tsa_host_key))
-        authorized_keys: [((worker_key.public_key))]
+        authorized_keys: |
+          ((worker_key.public_key))
 
 - name: db
   instances: 1
