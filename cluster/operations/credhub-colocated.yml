@@ -1,6 +1,10 @@
+# Notes: there are some dependencies while enabling this ops file:
+# - /operations/tls.yml: for TLS
+# - /operations/uaa.yml: for client/user authentication
+
 # release
-- type: replace
-  path: /releases/-
+- path: /releases/-
+  type: replace
   value:
     name: credhub
     url: https://bosh.io/d/github.com/pivotal-cf/credhub-release?v=((credhub_version))
@@ -8,52 +12,44 @@
     version: ((credhub_version))
 
 # variables
-- type: replace
-  path: /variables?/name=credhub_db_password?
+- path: /variables?/name=credhub_db_password?
+  type: replace
   value:
     name: credhub_db_password
     type: password
-- type: replace
-  path: /variables?/name=credhub_encryption_password?
+- path: /variables?/name=credhub_encryption_password?
+  type: replace
   value:
     name: credhub_encryption_password
     type: password
     options:
       length: 40
-- type: replace
-  path: /variables?/name=concourse_to_credhub_client_secret?
+- path: /variables?/name=concourse_to_credhub_client_secret?
+  type: replace
   value:
     name: concourse_to_credhub_client_secret
     type: password
-- type: replace
-  path: /variables?/name=credhub_admin_secret?
+- path: /variables?/name=credhub_admin_secret?
+  type: replace
   value:
     name: credhub_admin_secret
     type: password
-- type: replace
-  path: /variables?/name=uaa_jwt?
-  value:
-    name: uaa_jwt
-    type: rsa
-    options:
-      key_length: 4096
 
 # add credhub job to web instance group
-- type: replace
-  path: /instance_groups/name=web/jobs/-
+- path: /instance_groups/name=web/jobs/-
+  type: replace
   value:
     name: credhub
     release: credhub
     properties:
       credhub:
         port: 8844
+        tls: ((atc_tls))
         authentication:
           uaa:
-            url: "((external_url)):8443"
-            verification_key: ((uaa_jwt.public_key))
             enabled: true
-            ca_certs:
-            - ((atc_tls.ca))
+            url: "((external_url)):8443"
+            ca_certs: [((atc_tls.ca))]
         authorization:
           acls:
             enabled: false
@@ -63,33 +59,32 @@
           username: &credhub_db_role credhub
           password: &credhub_db_passwd ((credhub_db_password))
           require_tls: false
-        tls: ((atc_tls))
         log_level: info
         encryption:
           providers:
-          - name: internal
+          - name: internal-provider
             type: internal
           keys:
-          - provider_name: internal
+          - provider_name: internal-provider
             key_properties:
               encryption_password: ((credhub_encryption_password))
             active: true
 
-# update DB instance to include credhub databases
-- type: replace
-  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/databases/-
+# update DB instance to include credhub database
+- path: /instance_groups/name=db/jobs/name=postgres/properties/databases/databases/-
+  type: replace
   value:
     name: *credhub_db
-- type: replace
-  path: /instance_groups/name=db/jobs/name=postgres/properties/databases/roles/-
+- path: /instance_groups/name=db/jobs/name=postgres/properties/databases/roles/-
+  type: replace
   value: 
     name: *credhub_db
     password: *credhub_db_passwd
 
 # update UAA job by adding new client(s)
-# concourse_to_credhub_client is used for concourse-credhub integration
-- type: replace
-  path: /instance_groups/name=web/jobs/name=uaa/properties/uaa/clients?/concourse_to_credhub_client
+# concourse_to_credhub_client is used for concourse<->credhub integration
+- path: /instance_groups/name=web/jobs/name=uaa/properties/uaa/clients?/concourse_to_credhub_client
+  type: replace
   value:
     id: concourse_to_credhub_client
     secret: ((concourse_to_credhub_client_secret))
@@ -99,11 +94,11 @@
     authorities: credhub.read,credhub.write
     access-token-validity: 1200
     refresh-token-validity: 3600
-# credhub-admin is used as the CredHub Admin
-- type: replace
-  path: /instance_groups/name=web/jobs/name=uaa/properties/uaa/clients?/credhub-admin
+# credhub_admin is used as the CredHub Admin
+- path: /instance_groups/name=web/jobs/name=uaa/properties/uaa/clients?/credhub_admin
+  type: replace
   value:
-    id: credhub-admin
+    id: credhub_admin
     secret: ((credhub_admin_secret))
     override: true
     authorized-grant-types: client_credentials
@@ -112,13 +107,15 @@
     access-token-validity: 3600
     refresh-token-validity: 3600
 
-# add credhub integration with atc job
-- type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/credhub?
+# add credhub integration with concourse
+- path: /instance_groups/name=web/jobs/name=web/properties/credhub?
+  type: replace
   value:
     url: ((external_url)):8844
     tls:
-      ca_cert: ((atc_ca))
+      ca_cert: ((atc_tls.ca))
+      client_cert: ((atc_tls.certificate))
       insecure_skip_verify: false
     client_id: concourse_to_credhub_client
     client_secret: ((concourse_to_credhub_client_secret))
+    path_prefix: /concourse
