@@ -1,4 +1,4 @@
-# concourse-deployment
+# concourse-bosh-deployment
 
 > A toolchain for deploying Concourse with [BOSH](https://bosh.io).
 
