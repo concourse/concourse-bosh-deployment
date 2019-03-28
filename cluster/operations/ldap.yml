@@ -1,6 +1,6 @@
 # add LDAP integretion to ATC job
 - type: replace
-  path: /instance_groups/name=web/jobs/name=atc/properties/ldap_auth?
+  path: /instance_groups/name=web/jobs/name=web/properties/ldap_auth?
   value:
     host: ((ldap_host))
     bind_dn: ((ldap_bind_dn))
