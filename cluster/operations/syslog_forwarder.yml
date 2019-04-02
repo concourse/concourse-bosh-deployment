@@ -19,8 +19,10 @@
 
           # prevent duplicate logs from components which send to syslog
           # themselves
+          # audispd rule: remove audispd log event flooding if queue overflows
           custom_rule: |
             if ($programname startswith "vcap.") then stop
+            if ($msg contains "audispd") then stop
 
 - type: replace
   path: /releases/-
