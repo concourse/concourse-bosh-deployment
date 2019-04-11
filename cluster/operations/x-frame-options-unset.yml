@@ -1,0 +1,14 @@
+#
+#  This operations file will configure web to not include the X-Frame-Options header
+#
+#  This allows accessing the web UI via an iframe, as is done in the Concourse
+#  documentation examples.
+#
+#  There are no configurable parameters associated with this
+#  operations file, and it is mutually-exclusive with the other two
+#  x-frame-options*.yml operations files.
+#
+---
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/x_frame_options?
+  value: ""
