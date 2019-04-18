@@ -1,0 +1,3 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/main_team?/auth/oidc/groups
+  value: ((main_team.oidc.groups))
