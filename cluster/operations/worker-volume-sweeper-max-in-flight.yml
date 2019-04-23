@@ -1,0 +1,3 @@
+- type: replace
+  path: /instance_groups/name=worker/jobs/name=worker/properties/volume_sweeper_max_in_flight?
+  value: ((volume_sweeper_max_in_flight))
