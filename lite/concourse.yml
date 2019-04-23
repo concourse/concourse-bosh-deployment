@@ -92,7 +92,7 @@ instance_groups:
       drain_timeout: 10m
 
       worker_gateway:
-        hosts: [127.0.0.1:2222]
+        hosts: ["127.0.0.1:2222"]
         host_public_key: ((tsa_host_key.public_key))
         worker_key: ((worker_key))
 
