@@ -9,12 +9,8 @@
   value:
     name: bbr-atcdb
     release: concourse
-    properties:
-      postgresql:
-        database: atc
-        role:
-          name: concourse
-          password: ((postgres_password))
+    consumes:
+      concourse_db: {from: web}
 
 - type: replace
   path: /instance_groups/name=db/jobs/-

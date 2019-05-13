@@ -10,14 +10,9 @@
   path: /instance_groups/name=web/jobs/-
   value:
     name: bbr-atcdb
-    properties:
-      postgresql:
-        database: atc
-        role:
-          name: concourse
-          password: ((postgres_password))
-      postgresql_database: atc
     release: concourse
+    consumes:
+      concourse_db: {from: web}
 
 - type: replace
   path: /instance_groups/name=web/jobs/-
