@@ -1,0 +1,21 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/gitlab_auth?/host?
+  value: ((gitlab_host))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/main_team?/auth/gitlab/users
+  value:
+  value: ((main_team.gitlab_users))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/main_team?/auth/gitlab/groups
+  value:
+  value: ((main_team.gitlab_groups))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/gitlab_auth?/client_id?
+  value: ((gitlab_client_id))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/gitlab_auth?/client_secret?
+  value: ((gitlab_client_secret))
