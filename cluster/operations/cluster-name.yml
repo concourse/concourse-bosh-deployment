@@ -1,0 +1,3 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/cluster_name?
+  value: ((cluster_name))
