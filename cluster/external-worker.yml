@@ -25,7 +25,7 @@ instance_groups:
       log_level: debug
       tags: ((worker_tags))
       worker_gateway:
-        hosts: [((tsa_host)):2222]
+        hosts: ["((tsa_host)):2222"]
         host_public_key: ((tsa_host_key.public_key))
         worker_key: ((worker_key))
 
