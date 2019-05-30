@@ -1,0 +1,35 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/audit?/build
+  value: ((enable_build_audit_log))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/audit?/container
+  value: ((enable_container_audit_log))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/audit?/job
+  value: ((enable_job_audit_log))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/audit?/pipeline
+  value: ((enable_pipeline_audit_log))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/audit?/resource
+  value: ((enable_resource_audit_log))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/audit?/system
+  value: ((enable_system_audit_log))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/audit?/team
+  value: ((enable_team_audit_log))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/audit?/volume
+  value: ((enable_volume_audit_log))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/audit?/worker
+  value: ((enable_worker_audit_log))
