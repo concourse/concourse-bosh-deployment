@@ -1,0 +1,30 @@
+- type: replace
+  path: /releases/-
+  value:
+    name: datadog-agent
+    version: latest
+
+- type: replace
+  path: /addons/-
+  value:
+    name: dd-agent
+    jobs:
+    - name: dd-agent
+      release: datadog-agent
+    properties:
+      dd:
+        api_key: ((datadog_api_key))
+
+        process_agent_enabled: true
+
+        use_dogstatsd: true
+
+        # this is the default, but let's be explicit for below
+        dogstatsd_port: 18125
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/datadog?
+  value:
+    agent_host: 127.0.0.1
+    agent_port: 18125
+    prefix: concourse.ci
