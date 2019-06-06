@@ -16,12 +16,19 @@
         api_key: ((datadog_api_key))
         tags: ((datadog_tags))
 
+        # collect live per-process stats
         process_agent_enabled: true
 
+        # enable statsd sink for concourse to emit its own metrics to
         use_dogstatsd: true
 
         # this is the default, but let's be explicit for below
         dogstatsd_port: 18125
+
+        # without this the hostnames are just 'db-0' which aren't unique across
+        # deployments, causing datadog to only collect one set of stats at a
+        # time (whoever starts up last)
+        unique_friendly_hostname: true
 
 - type: replace
   path: /instance_groups/name=web/jobs/name=web/properties/datadog?
