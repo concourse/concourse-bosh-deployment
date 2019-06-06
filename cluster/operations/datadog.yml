@@ -14,6 +14,7 @@
     properties:
       dd:
         api_key: ((datadog_api_key))
+        tags: ((datadog_tags))
 
         process_agent_enabled: true
 
