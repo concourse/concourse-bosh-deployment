@@ -6,8 +6,8 @@
 # manually. feel free to PR sane defaults along with newly supported
 # infrastructures and such!
 ---
-concourse_version: '5.2.0'
-concourse_sha1: 'e7c813d35e70e1a3a5334b977136ba736fae05e1'
+concourse_version: '5.3.0'
+concourse_sha1: '97410a92b3c2385b728a7414ad34520491701d4e'
 bpm_version: '1.0.4'
 bpm_sha1: '41df19697d6a69d2552bc2c132928157fa91abe0'
 postgres_version: '37'
