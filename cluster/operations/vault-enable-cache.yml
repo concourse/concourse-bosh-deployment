@@ -1,3 +1,0 @@
-- type: replace
-  path: /instance_groups/name=web/jobs/name=web/properties/vault/cache?
-  value: true
