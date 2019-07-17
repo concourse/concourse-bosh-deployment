@@ -113,7 +113,8 @@
   value:
     url: ((external_url)):8844
     tls:
-      ca_cert: ((atc_tls.ca))
+      ca_cert:
+        certificate: ((atc_tls.ca))
       client_cert: ((atc_tls.certificate))
       insecure_skip_verify: false
     client_id: concourse_to_credhub_client
