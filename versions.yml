@@ -9,7 +9,7 @@
 concourse_version: '5.4.0'
 concourse_sha1: 'ae507becad699ac21ab3d4e3d6e0130ac7922e78'
 bpm_version: '1.0.4'
-bpm_sha1: '41df19697d6a69d2552bc2c132928157fa91abe0'
+bpm_sha1: 'c2cceb2d1e271a2f7c5e7c563a7b26f919ebc17a'
 postgres_version: '38'
 postgres_sha1: '23620deb20c34cefadff74c0e5bfdffaaea1a807'
 windows_utilities_version: '0.11.0'
