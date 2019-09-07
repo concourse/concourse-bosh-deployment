@@ -3,7 +3,7 @@
   value:
     name: worker-((worker_tag))
     instances: 1
-    vm_type: ((worker_vm_type))
+    vm_type: ((tagged_worker_vm_type))
     stemcell: xenial
     networks: [{name: ((network_name))}]
     azs: [z1]
