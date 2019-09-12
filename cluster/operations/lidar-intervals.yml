@@ -1,0 +1,7 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/lidar_checker_interval?
+  value: ((lidar_checker_interval))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/lidar_scanner_interval?
+  value: ((lidar_scanner_interval))
