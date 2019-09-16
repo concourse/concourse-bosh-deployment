@@ -1,0 +1,4 @@
+---
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/metrics_buffer_size?
+  value: ((metrics_buffer_size))
