@@ -77,7 +77,7 @@
     name: *credhub_db
 - path: /instance_groups/name=db/jobs/name=postgres/properties/databases/roles/-
   type: replace
-  value: 
+  value:
     name: *credhub_db
     password: *credhub_db_passwd
 
@@ -116,7 +116,7 @@
       ca_cert:
         certificate: ((atc_tls.ca))
       client_cert: ((atc_tls.certificate))
-      insecure_skip_verify: false
+      insecure_skip_verify: ((insecure_skip_verify))
     client_id: concourse_to_credhub_client
     client_secret: ((concourse_to_credhub_client_secret))
     path_prefix: /concourse
