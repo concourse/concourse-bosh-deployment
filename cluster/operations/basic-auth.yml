@@ -1,7 +1,7 @@
 - type: replace
   path: /instance_groups/name=web/jobs/name=web/properties/main_team?/auth/local/users
-  value: [((local_user.username))]
+  value: [((local_user_username))]
 
 - type: replace
   path: /instance_groups/name=web/jobs/name=web/properties/add_local_users?
-  value: ['((local_user.username)):((local_user.password))']
+  value: ['((local_user_username)):((local_user_password))']
