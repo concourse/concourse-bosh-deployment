@@ -77,7 +77,7 @@
     name: *credhub_db
 - path: /instance_groups/name=db/jobs/name=postgres/properties/databases/roles/-
   type: replace
-  value: 
+  value:
     name: *credhub_db
     password: *credhub_db_passwd
 
@@ -106,7 +106,17 @@
     authorities: credhub.read,credhub.write
     access-token-validity: 3600
     refresh-token-validity: 3600
-
+#credhub_cli client used for external auth. For example: LDAP through uaa
+- path: /instance_groups/name=web/jobs/name=uaa/properties/uaa/clients/credhub_cli?
+  type: replace
+  value:
+    access-token-validity: 60
+    authorities: ""
+    authorized-grant-types: password,refresh_token
+    override: true
+    refresh-token-validity: 1800
+    scope: credhub.read,credhub.write
+    secret: ""
 # add credhub integration with concourse
 - path: /instance_groups/name=web/jobs/name=web/properties/credhub?
   type: replace
