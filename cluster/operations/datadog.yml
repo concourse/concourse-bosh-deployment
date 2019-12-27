@@ -34,6 +34,24 @@
         # time (whoever starts up last)
         unique_friendly_hostname: true
 
+        # by default, the agent will emit disk usage for every volume.
+        # this results in noisy, high-cardinality metrics that are also
+        # very expensive! these two config flags override the defaults,
+        # and disable per-volume reporting.
+        generate_disk_config: false
+        disk_yaml_config: |
+          ---
+          init_config:
+
+          instances:
+            - use_mount: yes
+              tag_by_filesystem: true
+              all_partitions: true
+              device_blacklist:
+              - /var/vcap/data/worker/work/volumes/*/**
+              excluded_filesystems:
+                - tracefs
+
 - type: replace
   path: /instance_groups/name=web/jobs/name=web/properties/datadog?
   value:
