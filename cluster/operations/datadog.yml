@@ -47,8 +47,8 @@
             - use_mount: yes
               tag_by_filesystem: true
               all_partitions: true
-              device_blacklist:
-              - /var/vcap/data/worker/work/volumes/*/**
+              mount_point_blacklist:
+              - ^\/var\/vcap\/data\/worker\/work\/volumes\/.*
               excluded_filesystems:
                 - tracefs
 
