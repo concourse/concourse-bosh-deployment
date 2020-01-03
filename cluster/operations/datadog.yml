@@ -49,8 +49,8 @@
               all_partitions: true
               mount_point_blacklist:
               - ^\/var\/vcap\/data\/worker\/work\/volumes\/.*
-              excluded_filesystems:
-                - tracefs
+              file_system_blacklist:
+              - tracefs
 
 - type: replace
   path: /instance_groups/name=web/jobs/name=web/properties/datadog?
