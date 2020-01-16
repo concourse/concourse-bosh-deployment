@@ -1,0 +1,4 @@
+---
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/credhub/tls/insecure_skip_verify?
+  value: true
