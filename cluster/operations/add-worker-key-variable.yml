@@ -1,0 +1,5 @@
+- type: replace
+  path: /variables?/-
+  value:
+    name: worker_key
+    type: ssh
