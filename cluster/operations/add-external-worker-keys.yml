@@ -1,0 +1,5 @@
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/worker_gateway/authorized_keys
+  value: |
+    ((worker_key.public_key))
+    ((external_worker_authorized_keys))
