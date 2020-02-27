@@ -1,6 +1,9 @@
-# this remove all bosh.io references
+# This remove all bosh.io references
 # used to ensure that the bosh director does
 # not call out to the open Internet
+
+# Requires all bosh releases that will be used
+# to have been uploaded to the bosh director
 - type: remove
   path: /releases/name=concourse?/url
 - type: remove
