@@ -1,6 +1,6 @@
 # requires the secure-internal-postgres.yml op file
 - type: replace
-  path: /instance_groups/name=web/jobs/name=credhub?/properties?/credhub?/data_storage?/tls_ca?
+  path: /instance_groups/name=web/jobs/name=credhub?/properties/credhub/data_storage/tls_ca?
   value: ((postgres_ca.certificate))
 
 - type: replace
