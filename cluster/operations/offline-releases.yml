@@ -1,0 +1,34 @@
+# This remove all bosh.io references
+# used to ensure that the bosh director does
+# not call out to the open Internet
+
+# Requires all bosh releases that will be used
+# to have been uploaded to the bosh director
+- type: remove
+  path: /releases/name=concourse?/url
+- type: remove
+  path: /releases/name=bpm?/url
+- type: remove
+  path: /releases/name=postgres?/url
+- type: remove
+  path: /releases/name=uaa?/url
+- type: remove
+  path: /releases/name=credhub?/url
+- type: remove
+  path: /releases/name=bbr?/url
+- type: remove
+  path: /releases/name=windows-utilities?/url
+- type: remove
+  path: /releases/name=concourse?/sha1
+- type: remove
+  path: /releases/name=bpm?/sha1
+- type: remove
+  path: /releases/name=postgres?/sha1
+- type: remove
+  path: /releases/name=uaa?/sha1
+- type: remove
+  path: /releases/name=credhub?/sha1
+- type: remove
+  path: /releases/name=bbr?/sha1
+- type: remove
+  path: /releases/name=windows-utilities?/sha1
