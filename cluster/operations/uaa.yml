@@ -109,3 +109,9 @@
   value:
     name: uaa_encryption_key
     type: password
+    
+- type: replace
+  path: /instance_groups/name=web/update?
+  value:
+    update_watch_time: 1000-150000
+    canary_watch_time: 1000-150000
