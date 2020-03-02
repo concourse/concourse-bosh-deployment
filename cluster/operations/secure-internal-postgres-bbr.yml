@@ -1,0 +1,17 @@
+# requires the secure-internal-postgres.yml op file
+- type: replace
+  path: /variables/-
+  value:
+    name: postgres_client_tls
+    type: certificate
+    options:
+      ca: postgres_ca
+      common_name: concourse
+      extended_key_usage:
+      - client_auth
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/postgresql?/client_cert
+  value:
+    private_key: ((postgres_client_tls.private_key))
+    certificate: ((postgres_client_tls.certificate))
