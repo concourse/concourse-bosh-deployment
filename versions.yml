@@ -6,12 +6,12 @@
 # manually. feel free to PR sane defaults along with newly supported
 # infrastructures and such!
 ---
-concourse_version: '5.8.1'
-concourse_sha1: '476ede4062acab307440d8539d6270b2e8fb4c6d'
-bpm_version: '1.1.6'
-bpm_sha1: '5bad6161dbbcf068830a100b6a76056fe3b99bc8'
-postgres_version: '40'
-postgres_sha1: '343f04f1594c57ecea65638802e94e311cd72688'
+concourse_version: '6.0.0'
+concourse_sha1: 'fbf479b56ec116f1a2ef0898f06038e61c915345'
+bpm_version: '1.1.8'
+bpm_sha1: 'c956394fce7e74f741e4ae8c256b480904ad5942'
+postgres_version: '41'
+postgres_sha1: '4488d08ff54117a9d904f6e2f27c82c1cf4c910e'
 windows_utilities_version: '0.11.0'
 windows_utilities_sha1: 'efc10ac0f4acae23637ce2c6f864d20df2e3a781'
 bbr_sdk_version: '1.15.0'
