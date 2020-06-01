@@ -3,6 +3,7 @@
   value:
     name: backup-and-restore-sdk
     version: ((bbr_sdk_version))
+    url: https://bosh.io/d/github.com/cloudfoundry-incubator/backup-and-restore-sdk-release?v=((bbr_sdk_version))
 
 - type: replace
   path: /instance_groups/name=db/jobs/-
