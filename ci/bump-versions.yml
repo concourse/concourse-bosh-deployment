@@ -11,6 +11,8 @@ inputs:
 - name: concourse-boshio
 - name: bpm-release
 - name: postgres-release
+- name: credhub-release
+- name: uaa-release
 
 outputs:
 - name: bumped-repo
