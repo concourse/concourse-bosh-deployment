@@ -15,7 +15,11 @@ cat ./concourse-bosh-deployment/versions.yml | \
   sed -e "s/bpm_version: .*/bpm_version: '$(cat bpm-release/version)'/" | \
   sed -e "s/bpm_sha1: .*/bpm_sha1: '$(cat bpm-release/sha1)'/" | \
   sed -e "s/postgres_version: .*/postgres_version: '$(cat postgres-release/version)'/" | \
-  sed -e "s/postgres_sha1: .*/postgres_sha1: '$(cat postgres-release/sha1)'/" \
+  sed -e "s/postgres_sha1: .*/postgres_sha1: '$(cat postgres-release/sha1)'/" | \
+  sed -e "s/uaa_version: .*/uaa_version: '$(cat uaa-release/version)'/" | \
+  sed -e "s/uaa_sha1: .*/uaa_sha1: '$(cat uaa-release/sha1)'/" | \
+  sed -e "s/credhub_version: .*/credhub_version: '$(cat credhub-release/version)'/" | \
+  sed -e "s/credhub_sha1: .*/credhub_sha1: '$(cat credhub-release/sha1)'/" \
   > bumped-repo/versions.yml
 
 cd bumped-repo
