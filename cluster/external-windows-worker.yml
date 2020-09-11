@@ -1,0 +1,42 @@
+name: ((deployment_name))
+
+releases:
+- name: concourse
+  version: ((concourse_version))
+  sha1: ((concourse_sha1))
+  url: https://bosh.io/d/github.com/concourse/concourse-bosh-release?v=((concourse_version))
+- name: windows-utilities
+  version: ((windows_utilities_version))
+  url: https://bosh.io/d/github.com/cloudfoundry-incubator/windows-utilities-release?v=((windows_utilities_version))
+  sha1: ((windows_utilities_sha1))
+
+stemcells:
+- alias: windows
+  os: windows2019
+  version: latest
+
+instance_groups:
+- name: windows-worker
+  instances: ((instances))
+  vm_type: ((worker_vm_type))
+  stemcell: windows
+  networks: [{name: ((external_worker_network_name))}]
+  azs: ((azs))
+  jobs:
+  - name: enable_ssh
+    release: windows-utilities
+  - name: worker-windows
+    release: concourse
+    properties:
+      tags: ((worker_tags))
+      worker_gateway:
+        hosts: ["((tsa_host)):2222"]
+        host_public_key: ((tsa_host_key.public_key))
+        worker_key: ((worker_key))
+
+update:
+  canaries: 1
+  max_in_flight: 1
+  serial: false
+  canary_watch_time: 1000-60000
+  update_watch_time: 1000-60000
