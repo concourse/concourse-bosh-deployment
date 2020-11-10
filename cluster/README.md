@@ -44,6 +44,12 @@ with `fly`:
 fly -t ci login -c http://10.244.15.2:8080 -u admin -p admin
 ```
 
+To access the web dashboard locally, setup port forwarding using the following:
+
+```shell
+bosh -e $BOSH_ENVIRONMENT -d $DEPLOYMENT_NAME ssh web/0 --opts ' -L 8080:localhost:8080'
+```
+
 ## Using BOSH BootLoader
 
 The `bbl` project maintains documentation for deploying Concourse quickly and
