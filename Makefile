@@ -21,6 +21,14 @@ deploy-651:
 ssh-651:
 	bosh -e prod -d conc-6-651 ssh web/0 --opts ' -L 8080:localhost:8080'
 
+set-pipeline-651:
+	fly -t dev sp -p bosh-ssh-test -c conc-6-pipeline.yml -n \
+		-v deployment=conc-6-651 \
+		-v bosh_url=10.0.0.6
+		-v bosh_user=$$(lpass show "Prod BOSH Director" --username) \
+		-v bosh_password=$$(lpass show "Prod BOSH Director" --password) ;\
+	fly -t dev up -p bosh-ssh-test
+
 deploy-660:
 	bosh -e prod deploy -d conc-6-660 ./cluster/concourse.yml \
 	  -l versions-660.yml \

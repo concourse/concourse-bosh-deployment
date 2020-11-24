@@ -1,0 +1,32 @@
+# This pipeline tries to bosh ssh onto the worker that it is currently on
+
+jobs:
+- name: bosh-ssh
+  plan:
+  - task: bosh-ssh-onto-worker
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          repository: governmentpaas/bosh-cli-v2
+      params:
+        BOSH_URL: ((bosh_url)) # could be bosh.concourse-ci.org or the internal IP 10.0.0.6
+        DEPLOYMENT: ((deployment))
+        BOSH_USER: ((bosh_user))
+        BOSH_PASS: ((bosh_password))
+      run:
+        path: /bin/bash
+        args:
+        - -c
+        - |
+          {
+            $BOSH_USER
+            $BOSH_PASS
+          } | bosh -e $BOSH_URL login
+          bosh -e $BOSH_URL alias-env prod
+
+          set -eux
+
+          echo "attempting to ssh and run ls on the worker this task is running on"
+          bosh -d $DEPLOYMENT ssh worker/0 -- ls -lah
