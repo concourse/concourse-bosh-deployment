@@ -20,13 +20,13 @@ jobs:
         args:
         - -c
         - |
-          {
-            $BOSH_USER
-            $BOSH_PASS
-          } | bosh -e $BOSH_URL login
-          bosh -e $BOSH_URL alias-env prod
-
           set -eux
 
+          echo "$BOSH_USER
+          $BOSH_PASS" | bosh -e $BOSH_URL login
+
+          bosh -e $BOSH_URL alias-env prod
+
+
           echo "attempting to ssh and run ls on the worker this task is running on"
-          bosh -d $DEPLOYMENT ssh worker/0 -- ls -lah
+          bosh -e prod -d $DEPLOYMENT ssh worker/0 -- ls -lah

@@ -24,7 +24,7 @@ ssh-651:
 set-pipeline-651:
 	fly -t dev sp -p bosh-ssh-test -c conc-6-pipeline.yml -n \
 		-v deployment=conc-6-651 \
-		-v bosh_url=10.0.0.6
+		-v bosh_url=https://bosh.concourse-ci.org \
 		-v bosh_user=$$(lpass show "Prod BOSH Director" --username) \
 		-v bosh_password=$$(lpass show "Prod BOSH Director" --password) ;\
 	fly -t dev up -p bosh-ssh-test
