@@ -4,15 +4,12 @@ name: ((deployment_name))
 releases:
 - name: concourse
   version: ((concourse_version))
-  sha1: ((concourse_sha1))
   url: https://bosh.io/d/github.com/concourse/concourse-bosh-release?v=((concourse_version))
 - name: bpm
   version: ((bpm_version))
-  sha1: ((bpm_sha1))
   url: https://bosh.io/d/github.com/cloudfoundry/bpm-release?v=((bpm_version))
 - name: postgres
   version: ((postgres_version))
-  sha1: ((postgres_sha1))
   url: https://bosh.io/d/github.com/cloudfoundry/postgres-release?v=((postgres_version))
 
 instance_groups:
