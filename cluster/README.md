@@ -11,8 +11,9 @@ Config](http://bosh.io/docs/cloud-config.html) on your director. This part
 depends on your infrastructure of choice. There are a few example configs under
 [cloud_configs/](cloud_configs/).
 
-For example, if you're going to deploy to a [BOSH
-Lite](http://bosh.io/docs/bosh-lite.html) director, you would run:
+Here's an example command for deploying Concourse to a BOSH director. Most of the
+values for the fields can be found in your cloud config, which you can retrieve using
+the `cloud-config` command.
 
 ```shell
 bosh -e $BOSH_ENVIRONMENT update-cloud-config cloud_configs/vbox.yml
@@ -41,6 +42,12 @@ with `fly`:
 
 ```shell
 fly -t ci login -c http://10.244.15.2:8080 -u admin -p admin
+```
+
+To access the web dashboard locally, setup port forwarding using the following:
+
+```shell
+bosh -e $BOSH_ENVIRONMENT -d $DEPLOYMENT_NAME ssh web/0 --opts ' -L 8080:localhost:8080'
 ```
 
 ## Using BOSH BootLoader
