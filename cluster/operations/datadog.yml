@@ -12,6 +12,7 @@
       stemcell:
       - os: ubuntu-trusty
       - os: ubuntu-xenial
+      - os: ubuntu-bionic
     jobs:
     - name: dd-agent
       release: datadog-agent
