@@ -6,10 +6,10 @@
 # manually. feel free to PR sane defaults along with newly supported
 # infrastructures and such!
 ---
-concourse_version: '7.3.1'
-concourse_sha1: 'a180e9d6498deab20bc83e4e8890dd5e90970beb'
-bpm_version: '1.1.11'
-bpm_sha1: 'bddc87760088f1db16cfa4df189d6bbe512421f3'
+concourse_version: '7.3.2'
+concourse_sha1: 'e464cb907d7436a43f712b71d6dbde0fdce4be6d'
+bpm_version: '1.1.12'
+bpm_sha1: '502e9446fa34accaf122ad2b28b6ffa543d5bbca'
 postgres_version: '43'
 postgres_sha1: 'e44bbe8f8a7cdde1cda67b202e399a239d104db6'
 windows_utilities_version: '0.11.0'
