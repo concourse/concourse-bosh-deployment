@@ -8,3 +8,5 @@
     groups_key: ((oidc.groups_key))
     display_name: ((oidc.display_name))
     user_name_key: ((oidc.user_name_key))
+    skip_email_verified_validation: ((oidc.skip_email_verified_validation))
+    skip_ssl_validation: ((oidc.skip_ssl_validation))
