@@ -3,6 +3,11 @@
   path: /instance_groups/name=web/jobs/name=uaa?/properties/uaa/ca_certs?
   value: [((postgres_ca.certificate))]
 
+# available jbdc ssl mode options:
+#   - enabled = verify-full
+#   - enabled_skip_hostname_validation = verify-ca
+#   - enabled_skip_all_validation = require
+#   - disabled = disable 
 - type: replace
   path: /instance_groups/name=web/jobs/name=uaa?/properties/uaadb/tls?
   value: enabled
