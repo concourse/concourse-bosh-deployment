@@ -87,7 +87,7 @@ variables:
 
 stemcells:
 - alias: bionic
-  os: ubuntu-bionic
+  os: ubuntu-xenial
   version: latest
 
 update:
