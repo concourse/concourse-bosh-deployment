@@ -5,7 +5,7 @@ releases:
 - name: concourse
   version: ((concourse_version))
   sha1: ((concourse_sha1))
-  url: https://bosh.io/d/github.com/concourse/concourse-bosh-release?v=((concourse_version))
+  url: https://storage.googleapis.com/concourse-artifacts/bosh/concourse-6.6.1-dev.20220912T161715Z.commit.0fa2e60-ubuntu-jammy-1.8.tgz
 - name: bpm
   version: ((bpm_version))
   sha1: ((bpm_sha1))
@@ -20,7 +20,7 @@ instance_groups:
   instances: 1
   azs: ((azs))
   networks: [{name: ((network_name))}]
-  stemcell: xenial
+  stemcell: ubuntu
   vm_type: ((web_vm_type))
   jobs:
   - release: bpm
@@ -48,7 +48,7 @@ instance_groups:
   instances: 1
   azs: ((azs))
   networks: [{name: ((network_name))}]
-  stemcell: xenial
+  stemcell: ubuntu
   vm_type: ((db_vm_type))
   persistent_disk_type: ((db_persistent_disk_type))
   jobs:
@@ -66,7 +66,7 @@ instance_groups:
   instances: 1
   azs: ((azs))
   networks: [{name: ((network_name))}]
-  stemcell: xenial
+  stemcell: ubuntu
   vm_type: ((worker_vm_type))
   jobs:
   - release: concourse
@@ -86,8 +86,8 @@ variables:
   type: ssh
 
 stemcells:
-- alias: xenial
-  os: ubuntu-xenial
+- alias: ubuntu
+  os: ubuntu-jammy
   version: latest
 
 update:
