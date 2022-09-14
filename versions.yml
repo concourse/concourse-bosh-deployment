@@ -6,8 +6,8 @@
 # manually. feel free to PR sane defaults along with newly supported
 # infrastructures and such!
 ---
-concourse_version: '6.6.1-dev.20220912T161715Z.commit.0fa2e60'
-concourse_sha1: '9248898b6601e2a780413997a02806ef27c85b32'
+concourse_version: '6.6.2-dt.1'
+concourse_sha1: '558c28b2827f21b477cc6fa46be38f9d270e13bd'
 bpm_version: '1.1.19'
 bpm_sha1: '669baca975c6def518c7e736dbf189cfb438475b'
 postgres_version: '43'
@@ -20,3 +20,5 @@ uaa_version: '75.23.0'
 uaa_sha1: '328493d41fdfb2728ee17f8e3fcad1b7296a702f'
 credhub_version: '2.12.8'
 credhub_sha1: '7beae81d257ffc995a19617c558c13b1fb0714c6'
+garden_version: '1.22.3-dt.1'
+garden_sha1: '2c6c033724a27cc04d7e64868ae7745d47df1b6c'

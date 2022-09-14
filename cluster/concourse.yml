@@ -5,7 +5,7 @@ releases:
 - name: concourse
   version: ((concourse_version))
   sha1: ((concourse_sha1))
-  url: https://storage.googleapis.com/concourse-artifacts/bosh/concourse-6.6.1-dev.20220912T161715Z.commit.0fa2e60-ubuntu-jammy-1.8.tgz
+  url: https://storage.googleapis.com/concourse-artifacts/bosh/concourse-6.6.2-dt.1.tgz
 - name: bpm
   version: ((bpm_version))
   sha1: ((bpm_sha1))
@@ -14,6 +14,10 @@ releases:
   version: ((postgres_version))
   sha1: ((postgres_sha1))
   url: https://bosh.io/d/github.com/cloudfoundry/postgres-release?v=((postgres_version))
+- name: garden-runc
+  version: ((garden_version))
+  sha1: ((garden_sha1))
+  url: https://storage.googleapis.com/concourse-artifacts/bosh/garden-runc-release-1.22.3-dt.1.tgz
 
 instance_groups:
 - name: web
@@ -74,6 +78,9 @@ instance_groups:
     properties:
       drain_timeout: 10m
       worker_gateway: {worker_key: ((worker_key))}
+      garden: {bin: /var/vcap/packages/guardian/bin/gdn}
+  - release: garden-runc
+    name: garden-binaries
 
 variables:
 - name: postgres_password
