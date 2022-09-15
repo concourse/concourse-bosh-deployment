@@ -10,7 +10,7 @@
     name: dd-agent
     include:
       stemcell:
-      - os: ubuntu-bionic
+      - os: ubuntu-xenial
     jobs:
     - name: dd-agent
       release: datadog-agent
