@@ -6,8 +6,9 @@
 # manually. feel free to PR sane defaults along with newly supported
 # infrastructures and such!
 ---
-concourse_version: '6.6.2-dt.2'
-concourse_sha1: 'df1753eb976ae262a3f5f0f6867c2bb37dbed9d9'
+concourse_version: '6.6.2-dt.3'
+concourse_sha1: '2e087d5cda98cbf754d2724aa398cd9d00ca469b'
+concourse_url: 'https://storage.googleapis.com/concourse-artifacts/bosh/concourse-6.6.2-dt.3.tgz'
 bpm_version: '1.1.19'
 bpm_sha1: '669baca975c6def518c7e736dbf189cfb438475b'
 postgres_version: '43'

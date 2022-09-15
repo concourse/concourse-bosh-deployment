@@ -5,7 +5,7 @@ releases:
 - name: concourse
   version: ((concourse_version))
   sha1: ((concourse_sha1))
-  url: https://storage.googleapis.com/concourse-artifacts/bosh/concourse-6.6.2-dt.2.tgz
+  url: ((concourse_url))
 - name: bpm
   version: ((bpm_version))
   sha1: ((bpm_sha1))
