@@ -8,7 +8,7 @@ releases:
 
 stemcells:
 - alias: ubuntu
-  os: ubuntu-xenial
+  os: ubuntu-jammy
   version: latest
 
 instance_groups:

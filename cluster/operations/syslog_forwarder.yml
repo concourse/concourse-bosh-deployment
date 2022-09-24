@@ -4,7 +4,7 @@
     name: syslog_forwarder
     include:
       stemcell:
-      - os: ubuntu-xenial
+      - os: ubuntu-jammy
     jobs:
     - name: syslog_forwarder
       release: syslog

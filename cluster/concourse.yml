@@ -94,7 +94,7 @@ variables:
 
 stemcells:
 - alias: ubuntu
-  os: ubuntu-xenial
+  os: ubuntu-jammy
   version: latest
 
 update:
