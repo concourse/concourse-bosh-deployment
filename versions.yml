@@ -6,9 +6,9 @@
 # manually. feel free to PR sane defaults along with newly supported
 # infrastructures and such!
 ---
-concourse_version: '6.7.9-dt.1'
-concourse_sha1: '5eeddc7082452d01127b7f55c759b3843f118a4a'
-concourse_url: 'https://storage.googleapis.com/concourse-artifacts/bosh/concourse-6.7.9-dt.1.tgz'
+concourse_version: '6.6.1-dev.20220925T022703Z.commit.dd50107'
+concourse_sha1: 'fca6be5869c39072260052a55ba62afd4f3d7592'
+concourse_url: 'https://storage.googleapis.com/concourse-artifacts/bosh/concourse-6.6.1-dev.20220925T022703Z.commit.dd50107.tgz'
 bpm_version: '1.1.13'
 bpm_sha1: '82322898b2393951108617caac43752e498632a2'
 postgres_version: '43'
@@ -21,6 +21,3 @@ uaa_version: '76.0.0'
 uaa_sha1: '83bc6c978a2a64e53f8dcfe5838b994091995758'
 credhub_version: '2.11.0'
 credhub_sha1: '5ee5ca91b37afffa33dde0dcb34fcb6b284095f6'
-garden_version: '1.22.3-dt.5'
-garden_sha1: '3bf94efb265e7c47466ca7812c6078c02be5a45b'
-garden_url: 'https://storage.googleapis.com/concourse-artifacts/bosh/garden-runc-release-1.22.3-dt.5.tgz'

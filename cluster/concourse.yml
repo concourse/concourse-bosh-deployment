@@ -14,10 +14,6 @@ releases:
   version: ((postgres_version))
   sha1: ((postgres_sha1))
   url: https://bosh.io/d/github.com/cloudfoundry/postgres-release?v=((postgres_version))
-- name: garden-runc
-  version: ((garden_version))
-  sha1: ((garden_sha1))
-  url: ((garden_url))
 
 instance_groups:
 - name: web
@@ -78,9 +74,6 @@ instance_groups:
     properties:
       drain_timeout: 10m
       worker_gateway: {worker_key: ((worker_key))}
-      garden: {bin: /var/vcap/packages/guardian/bin/gdn}
-  - release: garden-runc
-    name: garden-binaries
 
 variables:
 - name: postgres_password
