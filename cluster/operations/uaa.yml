@@ -13,6 +13,8 @@
   value:
     name: uaa
     release: uaa
+    consumes:
+      database: { from: postgres }
     properties:
       uaa:
         url: &uaa-url "((external_url)):8443"
@@ -109,7 +111,6 @@
   value:
     name: uaa_encryption_key
     type: password
-    
 - type: replace
   path: /instance_groups/name=web/update?
   value:
