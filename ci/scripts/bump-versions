@@ -20,6 +20,8 @@ cat ./concourse-bosh-deployment/versions.yml | \
   sed -e "s/uaa_sha1: .*/uaa_sha1: '$(cat uaa-release/sha1)'/" | \
   sed -e "s/credhub_version: .*/credhub_version: '$(cat credhub-release/version)'/" | \
   sed -e "s/credhub_sha1: .*/credhub_sha1: '$(cat credhub-release/sha1)'/" \
+  sed -e "s/bbr_sdk_version: .*/bbr_sdk_version: '$(cat bbr-sdk-release/version)'/" | \
+  sed -e "s/bbr_sdk_sha1: .*/bbr_sdk_sha1: '$(cat bbr-sdk-release/sha1)'/" \
   > bumped-repo/versions.yml
 
 cd bumped-repo

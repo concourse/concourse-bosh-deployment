@@ -13,6 +13,7 @@ inputs:
 - name: postgres-release
 - name: credhub-release
 - name: uaa-release
+- name: bbr-sdk-release
 
 outputs:
 - name: bumped-repo
