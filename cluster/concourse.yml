@@ -20,7 +20,7 @@ instance_groups:
   instances: 1
   azs: ((azs))
   networks: [{name: ((network_name))}]
-  stemcell: xenial
+  stemcell: jammy
   vm_type: ((web_vm_type))
   jobs:
   - release: bpm
@@ -48,7 +48,7 @@ instance_groups:
   instances: 1
   azs: ((azs))
   networks: [{name: ((network_name))}]
-  stemcell: xenial
+  stemcell: jammy
   vm_type: ((db_vm_type))
   persistent_disk_type: ((db_persistent_disk_type))
   jobs:
@@ -66,7 +66,7 @@ instance_groups:
   instances: 1
   azs: ((azs))
   networks: [{name: ((network_name))}]
-  stemcell: xenial
+  stemcell: jammy
   vm_type: ((worker_vm_type))
   jobs:
   - release: concourse
@@ -86,8 +86,8 @@ variables:
   type: ssh
 
 stemcells:
-- alias: xenial
-  os: ubuntu-xenial
+- alias: jammy
+  os: ubuntu-jammy
   version: latest
 
 update:
