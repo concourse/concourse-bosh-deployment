@@ -7,8 +7,8 @@ releases:
   url: https://bosh.io/d/github.com/concourse/concourse-bosh-release?v=((concourse_version))
 
 stemcells:
-- alias: bionic
-  os: ubuntu-bionic
+- alias: jammy
+  os: ubuntu-jammy
   version: latest
 
 instance_groups:
@@ -16,7 +16,7 @@ instance_groups:
   instances: ((instances))
   azs: ((azs))
   vm_type: ((worker_vm_type))
-  stemcell: bionic
+  stemcell: jammy
   networks: [{name: ((external_worker_network_name))}]
   jobs:
   - name: worker
