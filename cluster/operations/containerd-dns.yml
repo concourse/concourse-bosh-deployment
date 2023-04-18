@@ -1,0 +1,3 @@
+- type: replace
+  path: /instance_groups/name=worker/jobs/name=worker/properties/containerd?/dns_servers?
+  value: ((containerd_dns_servers))
