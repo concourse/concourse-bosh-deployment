@@ -16,7 +16,7 @@
     properties:
       uaa:
         url: &uaa-url "((external_url)):8443"
-        port: 8181
+        localhost_http_port: 8181
         scim:
           users:
           - name: admin
