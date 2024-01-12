@@ -1,7 +1,8 @@
 # requires the external-postgres.yml op file
 - type: replace
   path: /instance_groups/name=web/jobs/name=web/properties/postgresql/ca_cert?
-  value: ((postgres_ca_cert))
+  value:
+    certificate: ((postgres_ca_cert))
 - type: replace
   path: /instance_groups/name=web/jobs/name=web/properties/postgresql/sslmode?
   value: verify-ca
