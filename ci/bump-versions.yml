@@ -14,6 +14,7 @@ inputs:
 - name: credhub-release
 - name: uaa-release
 - name: bbr-sdk-release
+- name: windows-utilities-release
 
 outputs:
 - name: bumped-repo
