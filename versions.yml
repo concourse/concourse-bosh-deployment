@@ -1,0 +1,22 @@
+# this file is partially maintained by CI; the concourse and garden-runc
+# versions and sha1s are automatically bumped, while the rest are preserved
+# as-is.
+#
+# this should make getting started easy while being easy enough to maintain
+# manually. feel free to PR sane defaults along with newly supported
+# infrastructures and such!
+---
+concourse_version: '7.11.2'
+concourse_sha1: 'c0b566627e3f8890fec9e4ebeea25921a6932d47'
+bpm_version: '1.2.16'
+bpm_sha1: '00e12a2c7e9389320999f99cf74061bbd08f3770'
+postgres_version: '48'
+postgres_sha1: 'eeb3df0d6d8bb174a83d19fcdbac8dd4ed33e73d'
+windows_utilities_version: '0.20.0'
+windows_utilities_sha1: '52f489fe0806ee8915f5613f79c9173773871e8b'
+bbr_sdk_version: '1.18.119'
+bbr_sdk_sha1: 'cccf543c9a9fc6a6300fbe41ab32be27cde3dcd2'
+uaa_version: '76.31.0'
+uaa_sha1: 'd02d9aaa90a623196bce4c8de934ccef858715da'
+credhub_version: '2.12.60'
+credhub_sha1: '0ccea19c9aff3e63e8c67c99eb6e339336aaf555'
