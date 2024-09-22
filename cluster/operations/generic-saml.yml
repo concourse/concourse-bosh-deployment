@@ -27,4 +27,4 @@
 
 - type: replace
   path: /instance_groups/name=web/jobs/name=web/properties/main_team?/auth/saml/groups
-  value: ((main_team.oauth.saml_groups))
+  value: ((main_team.saml.saml_groups))
