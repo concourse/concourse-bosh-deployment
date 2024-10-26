@@ -1,0 +1,12 @@
+#
+#  This operations file will configure workers to communicate over
+#  the IPv6 Protocol in addition to existing IPv4
+#
+#  Requires the runtime-containerd.yml ops file
+---
+- type: replace
+  path: /instance_groups/name=worker/containerd/ipv6?
+  value:
+    enabled: ((ipv6.enabled))
+    pool: ((ipv6.pool))
+    disable_masquerade: ((ipv6.disable_masquerade))
