@@ -1,0 +1,10 @@
+#
+#  This operations file will add a shared path route
+#  in order to define secrets accessible by all teams.
+#
+#  Requires the aws-ssm-manager.yml ops file
+
+---
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/aws_ssm/shared_path?
+  value: ((aws_ssm_shared_path))

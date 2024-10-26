@@ -3,6 +3,7 @@
 #  the IPv6 Protocol in addition to existing IPv4
 #
 #  Requires the runtime-containerd.yml ops file
+
 ---
 - type: replace
   path: /instance_groups/name=worker/containerd/ipv6?
