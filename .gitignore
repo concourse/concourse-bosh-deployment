@@ -2,3 +2,4 @@
 *state.json
 deploy-*.sh
 .DS_Store
+/.idea/
