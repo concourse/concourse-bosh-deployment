@@ -6,8 +6,8 @@
 # manually. feel free to PR sane defaults along with newly supported
 # infrastructures and such!
 ---
-concourse_version: '7.13.0'
-concourse_sha1: '85e6454ae3cd4363126f362b0390a430c4c46b29'
+concourse_version: '7.13.1'
+concourse_sha1: '3069b7a758387257ae84d7085001d60cbc40dff6'
 bpm_version: '1.4.17'
 bpm_sha1: '431047f430d67fd02ec4a062987f6b1d8fb73a43'
 postgres_version: '53.0.3'
@@ -18,5 +18,5 @@ bbr_sdk_version: '1.19.45'
 bbr_sdk_sha1: 'af0c1cd711cde2125854737bc4f6ab20fb6f203c'
 uaa_version: '77.30.0'
 uaa_sha1: '07a3352ef4fb542526390d98e7ca88b78925e1ca'
-credhub_version: '2.13.0'
-credhub_sha1: '7f839bfe262a95f81f113e8f0c843afd6786e364'
+credhub_version: '2.13.1'
+credhub_sha1: 'f6a7283e645000e7a5420d2d6eea874d26f2eec4'
