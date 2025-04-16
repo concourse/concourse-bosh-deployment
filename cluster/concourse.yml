@@ -16,6 +16,26 @@ releases:
   url: https://bosh.io/d/github.com/cloudfoundry/postgres-release?v=((postgres_version))
 
 instance_groups:
+- name: db
+  instances: 1
+  azs: ((azs))
+  networks: [{name: ((network_name))}]
+  stemcell: jammy
+  vm_type: ((db_vm_type))
+  persistent_disk_type: ((db_persistent_disk_type))
+  jobs:
+  - release: postgres
+    name: postgres
+    properties:
+      databases:
+        port: 5432
+        databases:
+        - name: &db_name atc
+        roles:
+        - &db_role
+          name: concourse
+          password: ((postgres_password))
+
 - name: web
   instances: 1
   azs: ((azs))
@@ -34,33 +54,13 @@ instance_groups:
       external_url: ((external_url))
 
       postgresql:
-        database: &db_name atc
-        role: &db_role
-          name: concourse
-          password: ((postgres_password))
+        database: *db_name
+        role: *db_role
 
       worker_gateway:
         host_key: ((tsa_host_key))
         authorized_keys: |
           ((worker_key.public_key))
-
-- name: db
-  instances: 1
-  azs: ((azs))
-  networks: [{name: ((network_name))}]
-  stemcell: jammy
-  vm_type: ((db_vm_type))
-  persistent_disk_type: ((db_persistent_disk_type))
-  jobs:
-  - release: postgres
-    name: postgres
-    properties:
-      databases:
-        port: 5432
-        databases:
-        - name: *db_name
-        roles:
-        - *db_role
 
 - name: worker
   instances: 1
