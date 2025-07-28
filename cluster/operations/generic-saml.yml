@@ -1,0 +1,30 @@
+#
+#  This operations file will configure web to accept SAML Auth via an
+#  external provider.
+#
+#  It will add the SAML Auth Properties to web along with user and group
+#  properties to set the user and group binds
+#
+---
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/saml_auth?
+  value:
+    ca_cert: ((saml_auth_ca_cert))
+    display_name: ((saml_auth_display_name))
+    email_attr: ((saml_auth_email_attr))
+    entity_issuer: ((saml_auth_entity_issuer))
+    groups_attr: ((saml_auth_groups_attr))
+    groups_delim: ((saml_auth_groups_delim))
+    insecure_skip_verify: ((saml_auth_insecure_skip_verify))
+    name_id_policy_format: ((saml_auth_name_id_policy_format))
+    sso_issuer: ((saml_auth_sso_issuer))
+    sso_url: ((saml_auth_sso_url))
+    username_attr: ((saml_auth_username_attr))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/main_team?/auth/saml/users
+  value: ((main_team.saml.saml_users))
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/main_team?/auth/saml/groups
+  value: ((main_team.saml.saml_groups))
