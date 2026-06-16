@@ -1,0 +1,17 @@
+#
+#  This operations file will add AWS SSM Secrets Manager Support to
+#  the web node
+
+---
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/aws_ssm?
+  value:
+    access_key: ((aws_ssm.access_key))
+    secret_key: ((aws_ssm.secret_key))
+    region: ((aws_ssm.region))
+
+    pipeline_secret_template: ((aws_ssm.pipeline_secret_template))
+    # default value is  /concourse/{{.Team}}/{{.Pipeline}}/{{.Secret}}
+
+    team_secret_template: ((aws_ssm.team_secret_template))
+    # default value is /concourse/{{.Team}}/{{.Secret}}

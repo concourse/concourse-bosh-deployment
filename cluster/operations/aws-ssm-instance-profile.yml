@@ -1,0 +1,13 @@
+#
+#  This operations file will use remove the AWS SSM
+#  Access and Secret Access Key to instead use the instance
+#  profile of the web node.
+#
+#  Requires the aws-ssm-manager.yml ops file
+
+---
+- type: remove
+  path: /instance_groups/name=web/jobs/name=web/properties/aws_ssm/access_key
+
+- type: remove
+  path: /instance_groups/name=web/jobs/name=web/properties/aws_ssm/secret_key
