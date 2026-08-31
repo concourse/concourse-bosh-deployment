@@ -1,0 +1,15 @@
+#
+#  This operations file will configure web to accept the Vault Client
+#  Token from a file
+#
+#  Requires the vault.yml ops file
+#
+
+---
+- type: remove
+  path: /instance_groups/name=web/jobs/name=web/properties/vault/auth/client_token
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/vault/auth?
+  value:
+    client_token_path: ((vault.client_token_path))
