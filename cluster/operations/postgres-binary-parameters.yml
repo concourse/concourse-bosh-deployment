@@ -1,0 +1,8 @@
+#
+#  This operations file will allow the option for the
+#  PostgreSQL Driver to use Binary Parameters for Prepared Statements.
+
+---
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/postgresql?/binary_parameters?
+  value: ((postgres_binary))

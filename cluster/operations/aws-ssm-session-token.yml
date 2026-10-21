@@ -1,0 +1,16 @@
+#
+#  This operations file will use a Session Token instead of
+#  a pair of Access and Secret Access Keys
+#
+#  Requires the aws-ssm-manager.yml ops file
+
+---
+- type: remove
+  path: /instance_groups/name=web/jobs/name=web/properties/aws_ssm/access_key
+
+- type: remove
+  path: /instance_groups/name=web/jobs/name=web/properties/aws_ssm/secret_key
+
+- type: replace
+  path: /instance_groups/name=web/jobs/name=web/properties/aws_ssm/session_token
+  value: ((aws_ssm_session_token))
