@@ -1,0 +1,5 @@
+# The Resolute stemcell ships with BPM, so it's now optional
+- type: remove
+  path: /instance_groups/name=web/jobs/name=bpm
+- type: remove
+  path: /releases/name=bpm
