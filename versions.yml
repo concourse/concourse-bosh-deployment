@@ -6,8 +6,8 @@
 # manually. feel free to PR sane defaults along with newly supported
 # infrastructures and such!
 ---
-concourse_version: '8.3.2'
-concourse_sha1: '3450638babf03831303777c1edd9d8bce992c13b'
+concourse_version: '8.3.3'
+concourse_sha1: '89c771cccdce7e81e07ceb47d6ddeca80200a39a'
 bpm_version: '1.4.44'
 bpm_sha1: '7caefb186b6260e3dfb00737889d9daafeff3672'
 postgres_version: '57.1.0'
@@ -16,7 +16,7 @@ windows_utilities_version: '0.23.0'
 windows_utilities_sha1: 'aef5a018875417c6eefb4e2ae01c49a865910d60'
 bbr_sdk_version: '1.20.8'
 bbr_sdk_sha1: 'cf05c54e303f174b5824812784df40db04171ed8'
-uaa_version: '79.9.0'
-uaa_sha1: '1e2d74c2a7149a157432831d287cf1f6b3a9fd10'
-credhub_version: '2.15.27'
-credhub_sha1: 'deac944ea6cab76bc30d39a086f5ba998fc40666'
+uaa_version: '79.10.0'
+uaa_sha1: '64aa1d0657b0358249948859bcd27f7fcbfba38a'
+credhub_version: '2.15.29'
+credhub_sha1: 'df80c3ec591c2253279c4f6dd4405c63a8ef10dd'
