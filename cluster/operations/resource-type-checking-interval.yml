@@ -1,0 +1,9 @@
+#
+#  This operations file will override the default Resource Type
+#  Check Interval on the web node
+#
+
+---
+- type: replace
+  path: /instance_groups/name=web/default_resource_type_check_interval
+  value: ((resource_check_interval))
